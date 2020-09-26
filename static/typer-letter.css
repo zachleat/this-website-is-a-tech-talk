@@ -1,0 +1,41 @@
+@keyframes blinkingCursor {
+	0% {
+		border-color: #fff;
+	}
+	100% {
+		border-color: transparent;
+	}
+}
+
+.typer-letter {
+  display: none;
+}
+.typer-letter-typed {
+  /* display: initial; */
+  display: inline-block;
+}
+.typer-letter-typed-initial {
+  opacity: .7;
+}
+.typer-letter-cursor {
+  border-right: 2px solid transparent;
+}
+/* TODO add .slide:focus and .slide:focus-within to only show cursor when focused */
+/* .typer-letter-use-cursor .slide:focus .typer-letter-cursor,
+.typer-letter-use-cursor .slide:focus-within .typer-letter-cursor { */
+.typer-letter-use-cursor .typer-letter-cursor {
+  border-color: currentColor;
+  animation: blinkingCursor 1s infinite steps(2, start);
+}
+/* .typer-letter-use-cursor .slide:focus .typer-letter-cursor-first,
+.typer-letter-use-cursor .slide:focus-within .typer-letter-cursor-first { */
+.typer-letter-use-cursor .typer-letter-cursor-first {
+  display: inline-block;
+  color: transparent;
+  border-left: 2px solid #fff;
+  border-right: none;
+  width: 0;
+  height: 1.3125em; /* 21px /16 */
+  position: relative;
+  bottom: -1px;
+}

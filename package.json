@@ -1,0 +1,18 @@
+{
+  "name": "this-web-site-is-a-tech-talk",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eleventy.js",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "file:../eleventy",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "jsdom": "^16.4.0",
+    "resizeasaurus": "^1.0.2"
+  }
+}

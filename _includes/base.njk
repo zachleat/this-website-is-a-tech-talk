@@ -1,0 +1,22 @@
+---
+title: This Web Site is a Tech Talk
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ title }}</title>
+		<link rel="stylesheet" href="/static/slides.css">
+		<link rel="stylesheet" href="/static/typer-letter.css">
+		<link rel="stylesheet" href="/static/prism-material-oceanic.css">
+		<link rel="stylesheet" href="/static/resizeasaurus.css">
+		<link rel="stylesheet" href="/static/style.css">
+	</head>
+	<body>
+		{{ content | safe }}
+		<script type="module" src="/static/typer-letter.js"></script>
+		<script type="module" src="/static/resizeasaurus.js"></script>
+		<script type="module" src="/static/slides.js"></script>
+	</body>
+</html>

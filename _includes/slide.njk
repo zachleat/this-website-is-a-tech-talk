@@ -1,0 +1,29 @@
+---
+layout: base.njk
+theme: oceanic
+orientation: horizontal
+ratio: "60-40"
+flip: true
+autoplay: false
+---
+<div class="slide theme-{{ theme }} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% if flip %} slide-flip{% endif %}{% if autoplay %} slide-autoplay{% endif %}" tabindex="0" autofocus>
+  {{ content | getJsdomLetters(showUntil, showAfter) | safe }}
+  <div class="frame">
+    <resize-asaurus class="frame-resizer">
+      <div class="window frame-resizer-main">
+        <div class="window-hed">
+          <div class="window-circle window-circle-red"></div>
+          <div class="window-circle window-circle-yellow"></div>
+          <div class="window-circle window-circle-green"></div>
+        </div>
+        <iframe class="frame-resizer-iframe" src="data:text/html;charset=utf-8,"></iframe>
+      </div>
+    </resize-asaurus>
+  </div>
+</div>
+<nav class="slide-nav">
+{% set previousPost = collections.slide | getPreviousCollectionItem(page) %}
+{% set nextPost = collections.slide | getNextCollectionItem(page) %}
+<a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="sr-only">Previous Slide</span></a>
+<a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="sr-only">Next Slide</span>→</a>
+</nav>
