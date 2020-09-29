@@ -5,9 +5,12 @@ orientation: horizontal
 ratio: "60-40"
 flip: true
 autoplay: false
+typing:
+  - 0
+title:
 ---
-<div class="slide theme-{{ theme }} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% if flip %} slide-flip{% endif %}{% if autoplay %} slide-autoplay{% endif %}" tabindex="0" autofocus>
-  {{ content | getJsdomLetters(showUntil, showAfter) | safe }}
+<div class="slide theme-{{ theme }} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% if flip %} slide-flip{% endif %}{% if autoplay %} slide-autoplay{% endif %}{% if showWindowSize %} slide-windowsize{% endif %}" tabindex="0" autofocus>
+  {{ content | getJsdomLetters(typing) | safe }}
   <div class="frame">
     <resize-asaurus class="frame-resizer">
       <div class="window frame-resizer-main">
@@ -15,6 +18,9 @@ autoplay: false
           <div class="window-circle window-circle-red"></div>
           <div class="window-circle window-circle-yellow"></div>
           <div class="window-circle window-circle-green"></div>
+          {%- if title %}
+          <div class="window-title">{{ title }}</div>
+          {%- endif %}
         </div>
         <iframe class="frame-resizer-iframe" src="data:text/html;charset=utf-8,"></iframe>
       </div>
