@@ -11,7 +11,6 @@
   display: none;
 }
 .typer-letter-typed {
-  /* display: initial; */
   display: inline-block;
 }
 .typer-letter-typed-initial {
@@ -26,16 +25,4 @@
 .typer-letter-use-cursor .typer-letter-cursor {
   border-color: currentColor;
   animation: blinkingCursor 1s infinite steps(2, start);
-}
-/* .typer-letter-use-cursor .slide:focus .typer-letter-cursor-first,
-.typer-letter-use-cursor .slide:focus-within .typer-letter-cursor-first { */
-.typer-letter-use-cursor .typer-letter-cursor-first {
-  display: inline-block;
-  color: transparent;
-  border-left: 2px solid #fff;
-  border-right: none;
-  width: 0;
-  height: 1.3125em; /* 21px /16 */
-  position: relative;
-  bottom: -1px;
 }

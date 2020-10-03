@@ -108,8 +108,8 @@
 /* Resize the preview window */
 .frame-resizer.frame-resizer {
   display: flex;
-  box-sizing: content-box;
-  margin: 0;
+	margin: 0;
+	border: none;
 }
 .frame-resizer {
   flex-direction: column;

@@ -7,10 +7,11 @@ flip: true
 autoplay: false
 typing:
   - 0
+multipleCursors: false
 title:
 ---
 <div class="slide theme-{{ theme }} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% if flip %} slide-flip{% endif %}{% if autoplay %} slide-autoplay{% endif %}{% if showWindowSize %} slide-windowsize{% endif %}" tabindex="0" autofocus>
-  {{ content | getJsdomLetters(typing) | safe }}
+  {{ content | getJsdomLetters(typing, multipleCursors) | safe }}
   <div class="frame">
     <resize-asaurus class="frame-resizer">
       <div class="window frame-resizer-main">

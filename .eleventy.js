@@ -9,9 +9,10 @@ const { JSDOM } = jsdom;
 // 2,3 5,6 => type to show from 2 to 3 and from 5 to 6
 //   in other words, show 1 and 4 and 7+
 
-function getTypingConfigResults(typingConfig, charIndex) {
+function getTypingConfigResults(typingConfig, charIndex, multipleCursors = false) {
 	let lowestIndex = 99999999;
 	let waitToShow = {};
+	let showCursor = false;
 
 	for(let cfg of typingConfig) {
 		let split = ("" + cfg).split(",");
@@ -21,18 +22,20 @@ function getTypingConfigResults(typingConfig, charIndex) {
 		for(let j = start+1; j < end; j++) {
 			waitToShow[j] = true;
 		}
+		if(multipleCursors && start === charIndex) {
+			showCursor = true;
+		}
 		lowestIndex = Math.min(lowestIndex, start);
 	}
 
-	let showCursor = false;
-	if(lowestIndex === charIndex) {
+	if(!multipleCursors && lowestIndex === charIndex) {
 		showCursor = true;
 	}
 	return { showTyped: !waitToShow[charIndex], showCursor };
 }
 
 let characterIndex = 0;
-function walkTree(doc, root, typingConfig = []) {
+function walkTree(doc, root, typingConfig = [], multipleCursors = false) {
 	for(let node of root.childNodes) {
 		if(node.nodeType === 3) {
 			let characters = node.textContent.split("");
@@ -40,13 +43,13 @@ function walkTree(doc, root, typingConfig = []) {
 				let newTextEl = doc.createElement("span");
 				characterIndex++;
 				let classes = ["typer-letter"];
-				let {showTyped, showCursor} = getTypingConfigResults(typingConfig, characterIndex);
+				let {showTyped, showCursor} = getTypingConfigResults(typingConfig, characterIndex, multipleCursors);
 
 				if(showTyped) {
 					classes.push("typer-letter-typed typer-letter-typed-initial");
 				}
 				if(showCursor) {
-					classes.push("typer-letter-cursor");
+					classes.push("typer-letter-cursor typer-letter-cursor-initial");
 				}
 				newTextEl.className = classes.join(" ");
 				newTextEl.innerHTML = char;
@@ -58,7 +61,7 @@ function walkTree(doc, root, typingConfig = []) {
 			if(node.classList.contains("typer-letter")) {
 				continue;
 			}
-			walkTree(doc, node, typingConfig);
+			walkTree(doc, node, typingConfig, multipleCursors);
 		}
 	}
 }
@@ -71,12 +74,12 @@ module.exports = function(eleventyConfig) {
 		"./node_modules/resizeasaurus/resizeasaurus.js": "/static/resizeasaurus.js",
 	});
 	
-	eleventyConfig.addFilter("getJsdomLetters", function(content, typingConfig) {
+	eleventyConfig.addFilter("getJsdomLetters", function(content, typingConfig, multipleCursors) {
 		let highlightedContent = syntaxHighlightFunction(content, "html");
 		let jsdoc = new JSDOM(`<html><body>${highlightedContent}</body></html>`);
 		let { document } = jsdoc.window;
 		characterIndex = 0;
-		walkTree(document, document.body, typingConfig);
+		walkTree(document, document.body, typingConfig, multipleCursors);
 		return document.body.innerHTML;
 	})
 };
