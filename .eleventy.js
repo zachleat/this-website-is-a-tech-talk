@@ -73,9 +73,19 @@ module.exports = function(eleventyConfig) {
 		"./node_modules/resizeasaurus/resizeasaurus.css": "/static/resizeasaurus.css",
 		"./node_modules/resizeasaurus/resizeasaurus.js": "/static/resizeasaurus.js",
 	});
+	eleventyConfig.addCollection("slide", function(collectionApi) {
+		return collectionApi.getFilteredByGlob("./slides/**/*.html").sort((a,b) => {
+			if(a.url < b.url) {
+				return -1;
+			} else if(a.url > b.url) {
+				return 1;
+			}
+			return 0;
+		});
+	});
 	
-	eleventyConfig.addFilter("getJsdomLetters", function(content, typingConfig, multipleCursors) {
-		let highlightedContent = syntaxHighlightFunction(content, "html");
+	eleventyConfig.addFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors) {
+		let highlightedContent = syntaxHighlightFunction(content, codeFormat, "", { trim: false });
 		let jsdoc = new JSDOM(`<html><body>${highlightedContent}</body></html>`);
 		let { document } = jsdoc.window;
 		characterIndex = 0;

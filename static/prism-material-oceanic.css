@@ -1,191 +1,191 @@
-.theme-oceanic code[class*="language-"],
-.theme-oceanic pre[class*="language-"] {
+code[class*="language-"],
+pre[class*="language-"] {
 	color: #c3cee3;
 }
 
-.theme-oceanic code[class*="language-"]::-moz-selection,
-.theme-oceanic pre[class*="language-"]::-moz-selection,
-.theme-oceanic code[class*="language-"] ::-moz-selection,
-.theme-oceanic pre[class*="language-"] ::-moz-selection {
+code[class*="language-"]::-moz-selection,
+pre[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"] ::-moz-selection {
 	background: transparent;
 }
 
-.theme-oceanic code[class*="language-"]::selection,
-.theme-oceanic pre[class*="language-"]::selection,
-.theme-oceanic code[class*="language-"] ::selection,
-.theme-oceanic pre[class*="language-"] ::selection {
+code[class*="language-"]::selection,
+pre[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection {
 	background: transparent;
 }
 
-.theme-oceanic :not(pre) > code[class*="language-"] {
+:not(pre) > code[class*="language-"] {
 	white-space: normal;
 	border-radius: 0.2em;
 	padding: 0.1em;
 }
 
-.theme-oceanic pre[class*="language-"] {
+pre[class*="language-"] {
 	/* overflow: auto; */
 	position: relative;
 	/* margin: 0.5em 0; */
 }
 
-.theme-oceanic .language-css > code,
-.theme-oceanic .language-sass > code,
-.theme-oceanic .language-scss > code {
+.language-css > code,
+.language-sass > code,
+.language-scss > code {
 	color: #fd9170;
 }
 
-.theme-oceanic [class*="language-"] .namespace {
+[class*="language-"] .namespace {
 	opacity: 0.7;
 }
 
-.theme-oceanic .token.atrule {
+.token.atrule {
 	color: #c792ea;
 }
 
-.theme-oceanic .token.attr-name {
+.token.attr-name {
 	color: #ffcb6b;
 }
 
-.theme-oceanic .token.attr-value {
+.token.attr-value {
 	color: #c3e88d;
 }
 
-.theme-oceanic .token.attribute {
+.token.attribute {
 	color: #c3e88d;
 }
 
-.theme-oceanic .token.boolean {
+.token.boolean {
 	color: #c792ea;
 }
 
-.theme-oceanic .token.builtin {
+.token.builtin {
 	color: #ffcb6b;
 }
 
-.theme-oceanic .token.cdata {
+.token.cdata {
 	color: #80cbc4;
 }
 
-.theme-oceanic .token.char {
+.token.char {
 	color: #80cbc4;
 }
 
-.theme-oceanic .token.class {
+.token.class {
 	color: #ffcb6b;
 }
 
-.theme-oceanic .token.class-name {
+.token.class-name {
 	color: #f2ff00;
 }
 
-.theme-oceanic .token.color {
+.token.color {
 	color: #f2ff00;
 }
 
-.theme-oceanic .token.comment {
+.token.comment {
 	color: #546e7a;
 }
 
-.theme-oceanic .token.constant {
+.token.constant {
 	color: #c792ea;
 }
 
-.theme-oceanic .token.deleted {
+.token.deleted {
 	color: #f07178;
 }
 
-.theme-oceanic .token.doctype {
+.token.doctype {
 	color: #546e7a;
 }
 
-.theme-oceanic .token.entity {
+.token.entity {
 	color: #f07178;
 }
 
-.theme-oceanic .token.function {
+.token.function {
 	color: #c792ea;
 }
 
-.theme-oceanic .token.hexcode {
+.token.hexcode {
 	color: #f2ff00;
 }
 
-.theme-oceanic .token.id {
+.token.id {
 	color: #c792ea;
 	font-weight: bold;
 }
 
-.theme-oceanic .token.important {
+.token.important {
 	color: #c792ea;
 	font-weight: bold;
 }
 
-.theme-oceanic .token.inserted {
+.token.inserted {
 	color: #80cbc4;
 }
 
-.theme-oceanic .token.keyword {
+.token.keyword {
 	color: #c792ea;
 	font-style: italic;
 }
 
-.theme-oceanic .token.number {
+.token.number {
 	color: #fd9170;
 }
 
-.theme-oceanic .token.operator {
+.token.operator {
 	color: #89ddff;
 }
 
-.theme-oceanic .token.prolog {
+.token.prolog {
 	color: #546e7a;
 }
 
-.theme-oceanic .token.property {
+.token.property {
 	color: #80cbc4;
 }
 
-.theme-oceanic .token.pseudo-class {
+.token.pseudo-class {
 	color: #c3e88d;
 }
 
-.theme-oceanic .token.pseudo-element {
+.token.pseudo-element {
 	color: #c3e88d;
 }
 
-.theme-oceanic .token.punctuation {
+.token.punctuation {
 	color: #89ddff;
 }
 
-.theme-oceanic .token.regex {
+.token.regex {
 	color: #f2ff00;
 }
 
-.theme-oceanic .token.selector {
+.token.selector {
 	color: #f07178;
 }
 
-.theme-oceanic .token.string {
+.token.string {
 	color: #c3e88d;
 }
 
-.theme-oceanic .token.symbol {
+.token.symbol {
 	color: #c792ea;
 }
 
-.theme-oceanic .token.tag {
+.token.tag {
 	color: #f07178;
 }
 
-.theme-oceanic .token.unit {
+.token.unit {
 	color: #f07178;
 }
 
-.theme-oceanic .token.url {
+.token.url {
 	color: #fd9170;
 }
 
-.theme-oceanic .token.variable {
+.token.variable {
 	color: #f07178;
 }

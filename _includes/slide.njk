@@ -1,17 +1,27 @@
 ---
 layout: base.njk
-theme: oceanic
+theme: prism-material-oceanic
+format: html
+preview: true
 orientation: horizontal
 ratio: "60-40"
 flip: true
 autoplay: false
+autoplaySpeed: 1
 typing:
   - 0
 multipleCursors: false
 title:
 ---
-<div class="slide theme-{{ theme }} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% if flip %} slide-flip{% endif %}{% if autoplay %} slide-autoplay{% endif %}{% if showWindowSize %} slide-windowsize{% endif %}" tabindex="0" autofocus>
-  {{ content | getJsdomLetters(typing, multipleCursors) | safe }}
+<div class="slide theme-{{ theme }}
+	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
+	{%- if flip %} slide-flip{% endif %}
+	{%- if autoplay %} slide-autoplay{% endif %}
+	{%- if showWindowSize %} slide-windowsize{% endif %}
+	{%- if multipleCursors %} slide-cursors-multiple{% endif %}"
+	{%- if autoplaySpeed %} data-slide-autoplay-speed="{{ autoplaySpeed }}"{% endif %} tabindex="0" autofocus>
+  {{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
+{% if preview %}
   <div class="frame">
     <resize-asaurus class="frame-resizer">
       <div class="window frame-resizer-main">
@@ -27,10 +37,11 @@ title:
       </div>
     </resize-asaurus>
   </div>
+{% endif %}
 </div>
 <nav class="slide-nav">
 {% set previousPost = collections.slide | getPreviousCollectionItem(page) %}
 {% set nextPost = collections.slide | getNextCollectionItem(page) %}
-<a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="sr-only">Previous Slide</span></a>
-<a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="sr-only">Next Slide</span>→</a>
+<a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="visually-hidden">Previous Slide</span></a>
+<a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="visually-hidden">Next Slide</span>→</a>
 </nav>

@@ -9,7 +9,9 @@ title: This Web Site is a Tech Talk
 		<title>{{ title }}</title>
 		<link rel="stylesheet" href="/static/slides.css">
 		<link rel="stylesheet" href="/static/typer-letter.css">
-		<link rel="stylesheet" href="/static/prism-material-oceanic.css">
+{% if theme %}
+		<link rel="stylesheet" href="/static/{{ theme }}.css">
+{% endif %}
 		<link rel="stylesheet" href="/static/resizeasaurus.css">
 		<link rel="stylesheet" href="/static/style.css">
 	</head>

@@ -20,9 +20,7 @@
   border-right: 2px solid transparent;
 }
 /* TODO add .slide:focus and .slide:focus-within to only show cursor when focused */
-/* .typer-letter-use-cursor .slide:focus .typer-letter-cursor,
-.typer-letter-use-cursor .slide:focus-within .typer-letter-cursor { */
-.typer-letter-use-cursor .typer-letter-cursor {
+.typer-letter-cursor-enabled .typer-letter-cursor {
   border-color: currentColor;
   animation: blinkingCursor 1s infinite steps(2, start);
 }

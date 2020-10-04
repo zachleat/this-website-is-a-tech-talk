@@ -18,7 +18,7 @@ class Slides {
       }
       event.preventDefault();
     }
-    if(event.metaKey && code === 39) {
+    if(event.metaKey && code === 39 || code === 13) {
       let next = this.getNextHref();
       if(next) {
         location.href = next;
