@@ -34,26 +34,31 @@ function getTypingConfigResults(typingConfig, charIndex, multipleCursors = false
 	return { showTyped: !waitToShow[charIndex], showCursor };
 }
 
+
 let characterIndex = 0;
+function modifyNode(node, typingConfig, multipleCursors) {
+	characterIndex++;
+	let classes = ["typer-letter"];
+	let {showTyped, showCursor} = getTypingConfigResults(typingConfig, characterIndex, multipleCursors);
+
+	if(showTyped) {
+		classes.push("typer-letter-typed typer-letter-typed-initial");
+	}
+	if(showCursor) {
+		classes.push("typer-letter-cursor typer-letter-cursor-initial");
+	}
+	node.className = classes.join(" ");
+	node.setAttribute("data-index", characterIndex);
+	return node;
+}
 function walkTree(doc, root, typingConfig = [], multipleCursors = false) {
 	for(let node of root.childNodes) {
 		if(node.nodeType === 3) {
 			let characters = node.textContent.split("");
 			for(let char of characters) {
 				let newTextEl = doc.createElement("span");
-				characterIndex++;
-				let classes = ["typer-letter"];
-				let {showTyped, showCursor} = getTypingConfigResults(typingConfig, characterIndex, multipleCursors);
-
-				if(showTyped) {
-					classes.push("typer-letter-typed typer-letter-typed-initial");
-				}
-				if(showCursor) {
-					classes.push("typer-letter-cursor typer-letter-cursor-initial");
-				}
-				newTextEl.className = classes.join(" ");
+				modifyNode(newTextEl, typingConfig, multipleCursors);
 				newTextEl.innerHTML = char;
-				newTextEl.setAttribute("data-index", characterIndex);
 				node.parentNode.insertBefore(newTextEl, node);
 			}
 			node.remove();
@@ -61,7 +66,11 @@ function walkTree(doc, root, typingConfig = [], multipleCursors = false) {
 			if(node.classList.contains("typer-letter")) {
 				continue;
 			}
-			walkTree(doc, node, typingConfig, multipleCursors);
+			if(node.nodeName === "BR") {
+				modifyNode(node, typingConfig, multipleCursors);
+			} else {
+				walkTree(doc, node, typingConfig, multipleCursors);
+			}
 		}
 	}
 }

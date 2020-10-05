@@ -32,7 +32,7 @@
 }
 
 .slide-preview-horizontal pre {
-  height: calc(100vh - 2 * var(--slide-border-width));
+  /* height: calc(100vh - 2 * var(--slide-border-width)); */
 }
 .slide-preview-horizontal .frame-resizer {
   /* flex-grow: 1; */
@@ -107,6 +107,7 @@
 
 /* Resize the preview window */
 .frame-resizer.frame-resizer {
+	width: 100%;
   display: flex;
 	margin: 0;
 	border: none;

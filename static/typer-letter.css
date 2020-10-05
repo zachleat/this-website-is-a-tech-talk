@@ -21,6 +21,10 @@
 }
 /* TODO add .slide:focus and .slide:focus-within to only show cursor when focused */
 .typer-letter-cursor-enabled .typer-letter-cursor {
-  border-color: currentColor;
+	border-color: currentColor;
   animation: blinkingCursor 1s infinite steps(2, start);
+}
+.typer-letter-deleted {
+	color: red;
+	text-decoration: wavy underline red;
 }

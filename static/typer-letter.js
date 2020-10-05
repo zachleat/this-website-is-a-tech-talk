@@ -1,3 +1,6 @@
+// How long after deleted character is typed before it can be removed and the next character typed
+const DELETED_CHAR_DELAY = 1000; // ms
+
 class Typer {
 	constructor(slideEl) {
 		this.slide = slideEl;
@@ -10,6 +13,7 @@ class Typer {
 			cursorEnabled: "typer-letter-cursor-enabled",
 			typed: "typer-letter-typed",
 			typedInitial: "typer-letter-typed-initial",
+			deleted: "typer-letter-deleted",
 		};
 		this.selectors = {
 			typed: `.${this.classes.letter}.${this.classes.typed}:not(.${this.classes.typedInitial})`,
@@ -127,9 +131,10 @@ class Typer {
 				// Special character for hardcoded deletes
 				if(el.innerHTML === "␡") {
 					let deletedChar = el.previousElementSibling;
+					deletedChar.classList.add(this.classes.deleted);
 					el.remove();
 
-					this.pauseFor(800, () => {
+					this.pauseFor(DELETED_CHAR_DELAY, () => {
 						deletedChar.remove();
 					});
 				}
