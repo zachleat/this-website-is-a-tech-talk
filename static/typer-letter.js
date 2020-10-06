@@ -118,6 +118,14 @@ class Typer {
 			afterCallback();
 		}, timeout)
 	}
+	
+	getDeleteDelay() {
+		let slideDelay = this.slide.getAttribute("data-slide-delete-delay");
+		if(slideDelay === undefined) {
+			return DELETED_CHAR_DELAY;
+		}
+		return slideDelay;
+	}
 
 	next(characterCount) {
 		let usingMultipleCursors = this.slide.classList.contains("slide-cursors-multiple");
@@ -134,7 +142,7 @@ class Typer {
 					deletedChar.classList.add(this.classes.deleted);
 					el.remove();
 
-					this.pauseFor(DELETED_CHAR_DELAY, () => {
+					this.pauseFor(this.getDeleteDelay(), () => {
 						deletedChar.remove();
 					});
 				}
@@ -203,6 +211,10 @@ class Typer {
 			event.shiftKey ) {
 			return;
 		}
+		
+		if( code === 192 ) { // tilde
+			this.autoplayNext(99999);
+		}
 
 		if( code === 8 ) {
 			if(event) {
@@ -225,8 +237,9 @@ class Typer {
 				for(let letter of untypedLetters) {
 					letter.remove();
 				}
-				
-				iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(cloned.textContent);
+				let content = cloned.textContent;
+				content = content.split("~/twitter/@").join("https://unavatar.now.sh/twitter/");
+				iframe.srcdoc = content;
 			});
 		}
 	}
@@ -237,6 +250,7 @@ class Typer {
 	let typer = new Typer(slideEl);
 	if(slideEl.classList.contains("slide-autoplay")) {
 		setTimeout(() => {
+			typer.insertOutputHtml();
 			typer.autoplayNext(slideEl.getAttribute("data-slide-autoplay-speed"));
 		}, 150);
 	} else {

@@ -8,9 +8,11 @@ ratio: "60-40"
 flip: true
 autoplay: false
 autoplaySpeed: 1
+deleteDelay: 1000
 typing:
   - 0
 multipleCursors: false
+allowIframeInteraction: false
 title:
 ---
 <div class="slide theme-{{ theme }}
@@ -18,7 +20,9 @@ title:
 	{%- if flip %} slide-flip{% endif %}
 	{%- if autoplay %} slide-autoplay{% endif %}
 	{%- if showWindowSize %} slide-windowsize{% endif %}
-	{%- if multipleCursors %} slide-cursors-multiple{% endif %}"
+	{%- if multipleCursors %} slide-cursors-multiple{% endif %}
+	{%- if allowIframeInteraction %} slide-iframe-interaction{% endif %}"
+	{%- if deleteDelay %} data-slide-delete-delay="{{ deleteDelay }}"{% endif %}
 	{%- if autoplaySpeed %} data-slide-autoplay-speed="{{ autoplaySpeed }}"{% endif %} tabindex="0" autofocus>
   {{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
 {% if preview %}

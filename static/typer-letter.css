@@ -24,7 +24,7 @@
 	border-color: currentColor;
   animation: blinkingCursor 1s infinite steps(2, start);
 }
-.typer-letter-deleted {
+/* .typer-letter-deleted {
 	color: red;
 	text-decoration: wavy underline red;
-}
+} */

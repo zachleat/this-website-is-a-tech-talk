@@ -15,9 +15,21 @@ function getTypingConfigResults(typingConfig, charIndex, multipleCursors = false
 	let showCursor = false;
 
 	for(let cfg of typingConfig) {
-		let split = ("" + cfg).split(",");
-		let start = parseInt(split[0], 10);
-		let end = split.length > 1 ? start + parseInt(split[1], 10) : charIndex+1;
+		let start, end;
+		cfg = "" + cfg;
+
+		if(cfg.indexOf(",") > -1) { // start,length
+			let split = cfg.split(",");
+			start = parseInt(split[0], 10);
+			end = split.length > 1 ? start + parseInt(split[1], 10) : charIndex+1;
+		} else if(cfg.indexOf("-") > -1) { // start,end
+			let split = cfg.split("-");
+			start = parseInt(split[0], 10);
+			end = split.length > 1 ? parseInt(split[1], 10) : charIndex+1;
+		} else {
+			start = parseInt(cfg, 10);
+			end = charIndex + 1;
+		}
 
 		for(let j = start+1; j < end; j++) {
 			waitToShow[j] = true;
@@ -51,10 +63,13 @@ function modifyNode(node, typingConfig, multipleCursors) {
 	node.setAttribute("data-index", characterIndex);
 	return node;
 }
+function convertStringToCharacterArray(str) {
+	return Array.from(str);
+}
 function walkTree(doc, root, typingConfig = [], multipleCursors = false) {
 	for(let node of root.childNodes) {
 		if(node.nodeType === 3) {
-			let characters = node.textContent.split("");
+			let characters = convertStringToCharacterArray(node.textContent);
 			for(let char of characters) {
 				let newTextEl = doc.createElement("span");
 				modifyNode(newTextEl, typingConfig, multipleCursors);
@@ -79,6 +94,7 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPlugin(syntaxHighlight);
 	eleventyConfig.addPassthroughCopy("./static/");
 	eleventyConfig.addPassthroughCopy({
+		"./slides/*.css": "/css/",
 		"./node_modules/resizeasaurus/resizeasaurus.css": "/static/resizeasaurus.css",
 		"./node_modules/resizeasaurus/resizeasaurus.js": "/static/resizeasaurus.js",
 	});
@@ -92,6 +108,10 @@ module.exports = function(eleventyConfig) {
 			return 0;
 		});
 	});
+	
+	eleventyConfig.addShortcode("level", function(level) {
+		return `Web Site Build Level ${level} of 10 Complete 🏆`;
+	})
 	
 	eleventyConfig.addFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors) {
 		let highlightedContent = syntaxHighlightFunction(content, codeFormat, "", { trim: false });
