@@ -5,7 +5,6 @@ format: html
 preview: true
 orientation: horizontal
 ratio: "60-40"
-flip: true
 autoplay: false
 autoplaySpeed: 1
 deleteDelay: 1000
@@ -14,33 +13,41 @@ typing:
 multipleCursors: false
 allowIframeInteraction: false
 title:
+externalIframeSrc:
+externalIframeSrcDoc:
 ---
 <div class="slide theme-{{ theme }}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
-	{%- if flip %} slide-flip{% endif %}
 	{%- if autoplay %} slide-autoplay{% endif %}
 	{%- if showWindowSize %} slide-windowsize{% endif %}
 	{%- if multipleCursors %} slide-cursors-multiple{% endif %}
 	{%- if allowIframeInteraction %} slide-iframe-interaction{% endif %}"
 	{%- if deleteDelay %} data-slide-delete-delay="{{ deleteDelay }}"{% endif %}
 	{%- if autoplaySpeed %} data-slide-autoplay-speed="{{ autoplaySpeed }}"{% endif %} tabindex="0" autofocus>
-  {{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
+	{{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
 {% if preview %}
-  <div class="frame">
-    <resize-asaurus class="frame-resizer">
-      <div class="window frame-resizer-main">
-        <div class="window-hed">
-          <div class="window-circle window-circle-red"></div>
-          <div class="window-circle window-circle-yellow"></div>
-          <div class="window-circle window-circle-green"></div>
-          {%- if title %}
-          <div class="window-title">{{ title }}</div>
-          {%- endif %}
-        </div>
-        <iframe class="frame-resizer-iframe" src="data:text/html;charset=utf-8,"></iframe>
-      </div>
-    </resize-asaurus>
-  </div>
+	<div class="frame">
+		<resize-asaurus class="frame-resizer">
+			<div class="window frame-resizer-main">
+				<div class="window-hed">
+					<div class="window-circle window-circle-red"></div>
+					<div class="window-circle window-circle-yellow"></div>
+					<div class="window-circle window-circle-green"></div>
+					{%- if title %}
+						{%- if title.startsWith("http") -%}
+							<a href="{{ title }}" class="window-title">{{ title }}</a>
+						{%- else -%}
+							<div class="window-title">{{ title }}</div>
+						{%- endif -%}
+					{%- endif %}
+				</div>
+				<iframe class="frame-resizer-iframe"
+					{%- if externalIframeSrc or externalIframeSrcDoc %} data-external-iframe {% endif -%}
+					src="{% if externalIframeSrc %}{{ externalIframeSrc }}{% else %}data:text/html;charset=utf-8,{% endif %}"
+					{%- if externalIframeSrcDoc %} srcdoc="{{ externalIframeSrcDoc }}"{% endif %}></iframe>
+			</div>
+		</resize-asaurus>
+	</div>
 {% endif %}
 </div>
 <nav class="slide-nav">
@@ -48,4 +55,5 @@ title:
 {% set nextPost = collections.slide | getNextCollectionItem(page) %}
 <a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="visually-hidden">Previous Slide</span></a>
 <a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="visually-hidden">Next Slide</span>→</a>
+&nbsp;<a id="slide-nav-preview" href="/preview/{{ page.fileSlug }}/"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>
 </nav>

@@ -222,6 +222,9 @@ class Typer {
 			}
 			this.previous();
 		} else if( !this.paused ) {
+			if(event) {
+				event.preventDefault();
+			}
 			this.next();
 		}
 	}
@@ -229,7 +232,7 @@ class Typer {
 	insertOutputHtml() {
 		let pre = this.slide.querySelector(":scope pre");
 		let iframe = document.querySelector("iframe");
-		if(pre && iframe) {
+		if(pre && iframe && !iframe.hasAttribute("data-external-iframe")) {
 			// throttle it
 			requestAnimationFrame(() => {
 				let cloned = pre.cloneNode(true);

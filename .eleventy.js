@@ -98,6 +98,7 @@ module.exports = function(eleventyConfig) {
 		"./node_modules/resizeasaurus/resizeasaurus.css": "/static/resizeasaurus.css",
 		"./node_modules/resizeasaurus/resizeasaurus.js": "/static/resizeasaurus.js",
 	});
+
 	eleventyConfig.addCollection("slide", function(collectionApi) {
 		return collectionApi.getFilteredByGlob("./slides/**/*.html").sort((a,b) => {
 			if(a.url < b.url) {
@@ -111,8 +112,12 @@ module.exports = function(eleventyConfig) {
 	
 	eleventyConfig.addShortcode("level", function(level) {
 		return `Web Site Build Level ${level} of 10 Complete 🏆`;
-	})
+	});
 	
+	eleventyConfig.addFilter("previewHtml", function(content) {
+		return content.split("~/twitter/@").join("https://unavatar.now.sh/twitter/");
+	});
+
 	eleventyConfig.addFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors) {
 		let highlightedContent = syntaxHighlightFunction(content, codeFormat, "", { trim: false });
 		let jsdoc = new JSDOM(`<html><body>${highlightedContent}</body></html>`);
