@@ -24,6 +24,7 @@
 
 ### v2
 
+* Dom diffing for iframe srcdoc? DiffHTML morphdom, diff-dom, nanomorph
 * Type a word at a time
 * Show a line at a time
 * Make it scroll with the text if it goes longer than a page
