@@ -2,6 +2,7 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const syntaxHighlightFunction = syntaxHighlight.pairedShortcode;
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const graymatter = require("gray-matter");
 
 // 0 => type to show all
 // 1 => type to show from 1+
@@ -48,10 +49,17 @@ function getTypingConfigResults(typingConfig, charIndex, multipleCursors = false
 
 
 let characterIndex = 0;
-function modifyNode(node, typingConfig, multipleCursors) {
-	characterIndex++;
+function modifyNode(node, typingConfig, multipleCursors, incrementCounter) {
 	let classes = ["typer-letter"];
-	let {showTyped, showCursor} = getTypingConfigResults(typingConfig, characterIndex, multipleCursors);
+
+	let showTyped = true;
+	let showCursor = false;
+	if(incrementCounter) {
+		characterIndex++;
+		let results = getTypingConfigResults(typingConfig, characterIndex, multipleCursors);
+		showTyped = results.showTyped;
+		showCursor = results.showCursor;
+	}
 
 	if(showTyped) {
 		classes.push("typer-letter-typed typer-letter-typed-initial");
@@ -60,7 +68,9 @@ function modifyNode(node, typingConfig, multipleCursors) {
 		classes.push("typer-letter-cursor typer-letter-cursor-initial");
 	}
 	node.className = classes.join(" ");
-	node.setAttribute("data-index", characterIndex);
+	if(incrementCounter) {
+		node.setAttribute("data-index", characterIndex);
+	}
 	return node;
 }
 function convertStringToCharacterArray(str) {
@@ -72,7 +82,7 @@ function walkTree(doc, root, typingConfig = [], multipleCursors = false) {
 			let characters = convertStringToCharacterArray(node.textContent);
 			for(let char of characters) {
 				let newTextEl = doc.createElement("span");
-				modifyNode(newTextEl, typingConfig, multipleCursors);
+				modifyNode(newTextEl, typingConfig, multipleCursors, true);
 				newTextEl.innerHTML = char;
 				node.parentNode.insertBefore(newTextEl, node);
 			}
@@ -82,8 +92,11 @@ function walkTree(doc, root, typingConfig = [], multipleCursors = false) {
 				continue;
 			}
 			if(node.nodeName === "BR") {
-				modifyNode(node, typingConfig, multipleCursors);
+				modifyNode(node, typingConfig, multipleCursors, true);
 			} else {
+				if(node.nodeName === "BODY") {
+					offsetToBody
+				}
 				walkTree(doc, node, typingConfig, multipleCursors);
 			}
 		}
@@ -94,9 +107,10 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPlugin(syntaxHighlight);
 	eleventyConfig.addPassthroughCopy("./static/");
 	eleventyConfig.addPassthroughCopy({
-		"./slides/*.css": "/css/",
+		"./slides/css/": "/css/",
 		"./node_modules/resizeasaurus/resizeasaurus.css": "/static/resizeasaurus.css",
 		"./node_modules/resizeasaurus/resizeasaurus.js": "/static/resizeasaurus.js",
+		"./node_modules/liquidjs/dist/liquid.browser.esm.js": "/static/liquid.js",
 	});
 
 	eleventyConfig.addCollection("slide", function(collectionApi) {
@@ -118,12 +132,36 @@ module.exports = function(eleventyConfig) {
 		return content.split("~/twitter/@").join("https://unavatar.now.sh/twitter/");
 	});
 
-	eleventyConfig.addFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors) {
+	eleventyConfig.addFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors, offsetToBody) {
 		let highlightedContent = syntaxHighlightFunction(content, codeFormat, "", { trim: false });
 		let jsdoc = new JSDOM(`<html><body>${highlightedContent}</body></html>`);
 		let { document } = jsdoc.window;
 		characterIndex = 0;
-		walkTree(document, document.body, typingConfig, multipleCursors);
+		walkTree(document, document.body, typingConfig, multipleCursors, offsetToBody);
 		return document.body.innerHTML;
-	})
+	});
+
+	eleventyConfig.addFilter("findCollectionIndex", (collection, page) => {
+		let j = 0;
+		let index;
+		for (let item of collection) {
+			if (
+				item.inputPath === page.inputPath &&
+				item.outputPath === page.outputPath
+				) {
+					return j;
+				}
+				j++;
+		}
+	});
+
+	eleventyConfig.addFilter("getFileContents", filepath => {
+		let matter = graymatter.read(filepath);
+		return matter.content;
+	});
+	
+	eleventyConfig.setLiquidOptions({
+		dynamicPartials: true,
+		strictFilters: true
+	});
 };

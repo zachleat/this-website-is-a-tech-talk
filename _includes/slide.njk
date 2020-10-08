@@ -11,20 +11,32 @@ deleteDelay: 1000
 typing:
   - 0
 multipleCursors: false
+showCursor: true
 allowIframeInteraction: false
 title:
 externalIframeSrc:
 externalIframeSrcDoc:
+templateLanguage: false
+useRawFileText: false
 ---
 <div class="slide theme-{{ theme }}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
 	{%- if autoplay %} slide-autoplay{% endif %}
 	{%- if showWindowSize %} slide-windowsize{% endif %}
+	{%- if not showCursor %} slide-hidecursor{% endif %}
 	{%- if multipleCursors %} slide-cursors-multiple{% endif %}
 	{%- if allowIframeInteraction %} slide-iframe-interaction{% endif %}"
+	{%- if templateLanguage %} data-slide-template-lang="{{ templateLanguage }}"{% endif %}
 	{%- if deleteDelay %} data-slide-delete-delay="{{ deleteDelay }}"{% endif %}
 	{%- if autoplaySpeed %} data-slide-autoplay-speed="{{ autoplaySpeed }}"{% endif %} tabindex="0" autofocus>
-	{{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
+	{% if useRawFileText %}
+		{% set content = page.inputPath | getFileContents %}
+	{% endif %}
+	{% if content %}
+		{{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
+	{% else %}
+		{% highlight "html" %}<!-- Needs HTML -->{% endhighlight %}
+	{% endif %}
 {% if preview %}
 	<div class="frame">
 		<resize-asaurus class="frame-resizer">
@@ -51,9 +63,11 @@ externalIframeSrcDoc:
 {% endif %}
 </div>
 <nav class="slide-nav">
+{% set currentPostIndex = collections.slide | findCollectionIndex(page) %}
 {% set previousPost = collections.slide | getPreviousCollectionItem(page) %}
 {% set nextPost = collections.slide | getNextCollectionItem(page) %}
 <a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="visually-hidden">Previous Slide</span></a>
 <a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="visually-hidden">Next Slide</span>→</a>
 &nbsp;<a id="slide-nav-preview" href="/preview/{{ page.fileSlug }}/"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>
+&nbsp;<span>{{ currentPostIndex }} of {{ collections.slide.length - 1 }}</span>
 </nav>

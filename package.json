@@ -12,7 +12,9 @@
   "dependencies": {
     "@11ty/eleventy": "file:../eleventy",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.2",
+    "gray-matter": "^4.0.2",
     "jsdom": "^16.4.0",
+    "liquidjs": "^9.15.1",
     "resizeasaurus": "^1.0.2"
   }
 }

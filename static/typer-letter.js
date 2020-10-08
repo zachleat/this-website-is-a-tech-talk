@@ -1,3 +1,5 @@
+import { Liquid } from "/static/liquid.js";
+
 // How long after deleted character is typed before it can be removed and the next character typed
 const DELETED_CHAR_DELAY = 1000; // ms
 
@@ -228,19 +230,41 @@ class Typer {
 			this.next();
 		}
 	}
+	
+	async renderLiquid(content, data = {}) {
+		var engine = new Liquid({
+			extname: '.html',
+			cache: true
+		});
+		let parsed = await engine.parse(content, "/");
+		// console.log( ">>> PARSED", parsed );
+		let html = await engine.render(parsed, data, {
+			root: "/"
+		});
+		// console.log( ">> RENDER", html );
+		return html;
+	}
 
-	insertOutputHtml() {
+	async insertOutputHtml() {
 		let pre = this.slide.querySelector(":scope pre");
 		let iframe = document.querySelector("iframe");
 		if(pre && iframe && !iframe.hasAttribute("data-external-iframe")) {
 			// throttle it
-			requestAnimationFrame(() => {
+			requestAnimationFrame(async () => {
 				let cloned = pre.cloneNode(true);
 				let untypedLetters = cloned.querySelectorAll(this.selectors.notTyped);
 				for(let letter of untypedLetters) {
 					letter.remove();
 				}
 				let content = cloned.textContent;
+				let templateLanguage = this.slide.getAttribute("data-slide-template-lang");
+				if(templateLanguage) {
+					try {
+						content = await this.renderLiquid(content);
+					} catch(e) {
+						console.warn( "Render error", e );
+					}
+				}
 				content = content.split("~/twitter/@").join("https://unavatar.now.sh/twitter/");
 				iframe.srcdoc = content;
 			});

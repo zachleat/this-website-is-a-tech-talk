@@ -24,6 +24,10 @@
 	border-color: currentColor;
   animation: blinkingCursor 1s infinite steps(2, start);
 }
+.slide-hidecursor .typer-letter-cursor {
+	border-color: transparent !important;
+	animation: none !important;
+}
 /* .typer-letter-deleted {
 	color: red;
 	text-decoration: wavy underline red;
