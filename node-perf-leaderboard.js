@@ -5,6 +5,7 @@ const fsp = require("fs").promises;
 
 	let urls = [
 		"https://fervent-beaver-9fea8f.netlify.app/benchmark/6/",
+		"https://fervent-beaver-9fea8f.netlify.app/benchmark/7a/",
 		"https://fervent-beaver-9fea8f.netlify.app/benchmark/7c/",
 	];
 
