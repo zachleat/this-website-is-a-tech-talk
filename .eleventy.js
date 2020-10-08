@@ -106,6 +106,7 @@ function walkTree(doc, root, typingConfig = [], multipleCursors = false) {
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPlugin(syntaxHighlight);
 	eleventyConfig.addPassthroughCopy("./static/");
+	eleventyConfig.addPassthroughCopy("./layouts/");
 	eleventyConfig.addPassthroughCopy({
 		"./slides/css/": "/css/",
 		"./node_modules/resizeasaurus/resizeasaurus.css": "/static/resizeasaurus.css",
@@ -163,5 +164,13 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.setLiquidOptions({
 		dynamicPartials: true,
 		strictFilters: true
+	});
+	
+	eleventyConfig.setBrowserSyncConfig({
+		ghostMode: false,
+		https: true,
+		snippetOptions: {
+			ignorePaths: "benchmark/*"
+		}
 	});
 };

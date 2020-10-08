@@ -6,6 +6,10 @@
 
 ## TODO
 
+* Pause delay at specified indeces (or at end of typing config entries) (e.g. on /slides/7/)
+	* Automatic pause delay for non alphanumeric characters
+* Cache images locally
+
 ### Bugs
 
 * Multiple cursors and Show all (tilde) function

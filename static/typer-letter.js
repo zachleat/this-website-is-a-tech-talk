@@ -1,5 +1,3 @@
-import { Liquid } from "/static/liquid.js";
-
 // How long after deleted character is typed before it can be removed and the next character typed
 const DELETED_CHAR_DELAY = 1000; // ms
 
@@ -232,7 +230,8 @@ class Typer {
 	}
 	
 	async renderLiquid(content, data = {}) {
-		var engine = new Liquid({
+		let { Liquid } = await import("/static/liquid.js");
+		let engine = new Liquid({
 			extname: '.html',
 			cache: true
 		});

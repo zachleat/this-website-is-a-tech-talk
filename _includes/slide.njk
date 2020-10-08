@@ -17,7 +17,6 @@ title:
 externalIframeSrc:
 externalIframeSrcDoc:
 templateLanguage: false
-useRawFileText: false
 ---
 <div class="slide theme-{{ theme }}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
@@ -29,13 +28,13 @@ useRawFileText: false
 	{%- if templateLanguage %} data-slide-template-lang="{{ templateLanguage }}"{% endif %}
 	{%- if deleteDelay %} data-slide-delete-delay="{{ deleteDelay }}"{% endif %}
 	{%- if autoplaySpeed %} data-slide-autoplay-speed="{{ autoplaySpeed }}"{% endif %} tabindex="0" autofocus>
-	{% if useRawFileText %}
+	{% if templateLanguage %}
 		{% set content = page.inputPath | getFileContents %}
 	{% endif %}
 	{% if content %}
 		{{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
 	{% else %}
-		{% highlight "html" %}<!-- Needs HTML -->{% endhighlight %}
+		{% highlight "html" %}<!-- Needs more HTML -->{% endhighlight %}
 	{% endif %}
 {% if preview %}
 	<div class="frame">
@@ -68,6 +67,6 @@ useRawFileText: false
 {% set nextPost = collections.slide | getNextCollectionItem(page) %}
 <a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="visually-hidden">Previous Slide</span></a>
 <a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="visually-hidden">Next Slide</span>→</a>
-&nbsp;<a id="slide-nav-preview" href="/preview/{{ page.fileSlug }}/"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>
+{%- if benchmark %}&nbsp;<a id="slide-nav-preview" href="/benchmark/{{ page.fileSlug }}/"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>{% endif %}
 &nbsp;<span>{{ currentPostIndex }} of {{ collections.slide.length - 1 }}</span>
 </nav>

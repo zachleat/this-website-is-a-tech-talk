@@ -3,6 +3,6 @@ layout: base.njk
 ---
 <ol>
   {%- for slide in collections.slide %}
-  <li><a href="{{ slide.url }}">Slide #{{ loop.index }}</a></li>
+  <li><a href="{{ slide.url }}">Slide <code>{{ slide.fileSlug }}</code></a></li>
   {%- endfor %}
 </ol>

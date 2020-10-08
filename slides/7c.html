@@ -1,0 +1,10 @@
+---
+title: index.html
+templateLanguage: liquid
+templateEngineOverride: html
+benchmark: true
+---
+{% layout "./layouts/liquid-layout.html" %}
+{% block content %}
+<h1>HTTP Request Count: 4 ➡ 1</h1>
+{% endblock %}
