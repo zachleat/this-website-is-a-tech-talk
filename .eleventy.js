@@ -112,6 +112,7 @@ module.exports = function(eleventyConfig) {
 		"./node_modules/resizeasaurus/resizeasaurus.css": "/static/resizeasaurus.css",
 		"./node_modules/resizeasaurus/resizeasaurus.js": "/static/resizeasaurus.js",
 		"./node_modules/liquidjs/dist/liquid.browser.esm.js": "/static/liquid.js",
+		"./node_modules/speedlify-score/speedlify-score.*": "/static/",
 	});
 
 	eleventyConfig.addCollection("slide", function(collectionApi) {
@@ -159,6 +160,10 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addFilter("getFileContents", filepath => {
 		let matter = graymatter.read(filepath);
 		return matter.content;
+	});
+	
+	eleventyConfig.addFilter("toJSON", function(obj) {
+		return JSON.stringify(obj);
 	});
 	
 	eleventyConfig.setLiquidOptions({

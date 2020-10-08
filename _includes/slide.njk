@@ -17,6 +17,7 @@ title:
 externalIframeSrc:
 externalIframeSrcDoc:
 templateLanguage: false
+performBenchmark: false
 ---
 <div class="slide theme-{{ theme }}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
@@ -61,12 +62,15 @@ templateLanguage: false
 	</div>
 {% endif %}
 </div>
+{% if performBenchmark %}
+<speedlify-score score requests weight raw-data='{{ benchmark[page.fileSlug] | toJSON | safe }}'></speedlify-score>
+{% endif %}
 <nav class="slide-nav">
 {% set currentPostIndex = collections.slide | findCollectionIndex(page) %}
 {% set previousPost = collections.slide | getPreviousCollectionItem(page) %}
 {% set nextPost = collections.slide | getNextCollectionItem(page) %}
 <a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="visually-hidden">Previous Slide</span></a>
 <a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="visually-hidden">Next Slide</span>→</a>
-{%- if benchmark %}&nbsp;<a id="slide-nav-preview" href="/benchmark/{{ page.fileSlug }}/"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>{% endif %}
+{%- if performBenchmark %}&nbsp;<a id="slide-nav-preview" href="/benchmark/{{ page.fileSlug }}/"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>{% endif %}
 &nbsp;<span>{{ currentPostIndex }} of {{ collections.slide.length - 1 }}</span>
 </nav>

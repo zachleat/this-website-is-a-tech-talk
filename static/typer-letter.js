@@ -14,6 +14,7 @@ class Typer {
 			typed: "typer-letter-typed",
 			typedInitial: "typer-letter-typed-initial",
 			deleted: "typer-letter-deleted",
+			finished: "typer-letter-finished",
 		};
 		this.selectors = {
 			typed: `.${this.classes.letter}.${this.classes.typed}:not(.${this.classes.typedInitial})`,
@@ -159,6 +160,8 @@ class Typer {
 				count++;
 			}
 			this.insertOutputHtml();
+		} else {
+			this.finish();
 		}
 	}
 	
@@ -180,6 +183,15 @@ class Typer {
 			this.initializeCursors();
 		}
 	}
+	
+	finish() {
+		document.documentElement.classList.add(this.classes.finished);
+	}
+	
+	unfinish() {
+		document.documentElement.classList.remove(this.classes.finished);
+	}
+
 
 	autoplayNext(autoplaySpeed = 1) {
 		// no cursor while it’s autoplaying
@@ -190,6 +202,7 @@ class Typer {
 				this.autoplayNext(autoplaySpeed);
 			} else {
 				this.toggleCursor(true);
+				this.finish();
 			}
 		})
 	}
@@ -220,6 +233,7 @@ class Typer {
 			if(event) {
 				event.preventDefault();
 			}
+			this.unfinish();
 			this.previous();
 		} else if( !this.paused ) {
 			if(event) {

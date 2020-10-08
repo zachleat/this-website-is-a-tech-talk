@@ -13,6 +13,9 @@ title: This Web Site is a Tech Talk
 		<link rel="stylesheet" href="/static/{{ theme }}.css">
 {% endif %}
 		<link rel="stylesheet" href="/static/resizeasaurus.css">
+{% if performBenchmark %}
+		<link rel="stylesheet" href="/static/speedlify-score.css">
+{% endif %}
 		<link rel="stylesheet" href="/static/style.css">
 	</head>
 	<body>
@@ -20,5 +23,8 @@ title: This Web Site is a Tech Talk
 		<script type="module" src="/static/typer-letter.js"></script>
 		<script type="module" src="/static/resizeasaurus.js"></script>
 		<script type="module" src="/static/slides.js"></script>
+{% if performBenchmark %}
+		<script type="module" src="/static/speedlify-score.js"></script>
+{% endif %}
 	</body>
 </html>

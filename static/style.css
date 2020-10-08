@@ -25,3 +25,27 @@ li {
   white-space: nowrap; /* 1 */
   width: 1px;
 }
+speedlify-score {
+	opacity: 0;
+	pointer-events: none;
+	position: fixed;
+	/* left: 50%; */
+	/* top: 50%; */
+	/* transform: translateX(-50%) translateY(-50%); */
+	bottom: 0;
+	right: 0;
+	font-size: 1.5em;
+	flex-wrap: nowrap;
+	transition: opacity ease-out .3s;
+	background-color: #fff;
+	padding: .4em;
+	border-radius: 1.3em 0 0 0;
+	box-shadow: 0 10px 60px rgba(0, 0, 0, .9);
+}
+speedlify-score .speedlify-score {
+	font-family: Roboto Mono, monospace;
+	border-width: 0.1875em; /* 3px /16 */
+}
+.typer-letter-finished speedlify-score {
+	opacity: 1;
+}
