@@ -168,7 +168,7 @@ module.exports = function(eleventyConfig) {
 	
 	eleventyConfig.setBrowserSyncConfig({
 		ghostMode: false,
-		https: true,
+		ui: false,
 		snippetOptions: {
 			ignorePaths: "benchmark/*"
 		}
