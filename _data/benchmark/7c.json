@@ -1,0 +1,46 @@
+{
+  "url": "https://fervent-beaver-9fea8f.netlify.app/benchmark/7c/",
+  "requestedUrl": "https://fervent-beaver-9fea8f.netlify.app/benchmark/7c/",
+  "timestamp": 1602170207359,
+  "ranks": {
+    "hundos": 1,
+    "performance": 3,
+    "accessibility": 1,
+    "cumulative": 1
+  },
+  "lighthouse": {
+    "version": "6.4.1",
+    "performance": 1,
+    "accessibility": 1,
+    "bestPractices": 1,
+    "seo": 1,
+    "total": 400
+  },
+  "firstContentfulPaint": 1272.412,
+  "speedIndex": 1727.2700000193595,
+  "largestContentfulPaint": 1272.412,
+  "totalBlockingTime": 0,
+  "cumulativeLayoutShift": 0,
+  "timeToInteractive": 1272.412,
+  "maxPotentialFirstInputDelay": 16,
+  "timeToFirstByte": 539.588,
+  "weight": {
+    "summary": "1 request • 1 KiB",
+    "total": 1148,
+    "image": 0,
+    "imageCount": 0,
+    "script": 0,
+    "scriptCount": 0,
+    "document": 1148,
+    "font": 0,
+    "fontCount": 0,
+    "stylesheet": 0,
+    "stylesheetCount": 0,
+    "thirdParty": 0,
+    "thirdPartyCount": 0
+  },
+  "axe": {
+    "passes": 10,
+    "violations": 2
+  }
+}

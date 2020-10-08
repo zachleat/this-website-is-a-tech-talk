@@ -199,11 +199,14 @@
 	right: calc(2 * var(--slide-border-width));
 	font-size: 0.5em; /* 8px /16 */
 }
+.slide-nav a {
+	text-decoration: none;
+	line-height: 1;
+}
 .slide-nav,
 .slide-nav a,
 .slide-nav a:visited {
 	color: #fff;
-	text-decoration: none;
 }
 .slide-nav-disabled {
 	opacity: .4;

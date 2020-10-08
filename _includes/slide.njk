@@ -35,7 +35,9 @@ performBenchmark: false
 	{% if content %}
 		{{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
 	{% else %}
-		{% highlight "html" %}<!-- Needs more HTML -->{% endhighlight %}
+		{% if not externalIframeSrc %}
+			{% highlight "html" %}<!-- Needs more HTML -->{% endhighlight %}
+		{% endif %}
 	{% endif %}
 {% if preview %}
 	<div class="frame">
@@ -69,8 +71,8 @@ performBenchmark: false
 {% set currentPostIndex = collections.slide | findCollectionIndex(page) %}
 {% set previousPost = collections.slide | getPreviousCollectionItem(page) %}
 {% set nextPost = collections.slide | getNextCollectionItem(page) %}
+{%- if performBenchmark %}<a id="slide-nav-preview" href="{% if externalIframeSrc %}{{ externalIframeSrc }}{% else %}'/benchmark/{{ page.fileSlug }}/{% endif %}"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>&nbsp;{% endif %}
 <a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="visually-hidden">Previous Slide</span></a>
 <a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="visually-hidden">Next Slide</span>→</a>
-{%- if performBenchmark %}&nbsp;<a id="slide-nav-preview" href="/benchmark/{{ page.fileSlug }}/"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>{% endif %}
 &nbsp;<span>{{ currentPostIndex }} of {{ collections.slide.length - 1 }}</span>
 </nav>

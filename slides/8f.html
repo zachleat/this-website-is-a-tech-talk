@@ -1,0 +1,17 @@
+---
+templateLanguage: liquid
+templateEngineOverride: html
+orientation: vertical
+typing:
+  - 64-294
+---
+{% layout "./layouts/liquid-layout.html" %}
+{% block content %}
+<h1>Post compression sizes:</h1>
+<ul>
+	<li><code>0.9</code> KiB of HTML</li>
+	<li><code>0.9</code> KiB of CSS</li>
+	<li><code>1.2</code> KiB in one SVG</li>
+	<li><code>38.3</code> KiB of JavaScript (is this necessary?)</li>
+</ul>
+{% endblock %}

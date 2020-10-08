@@ -4,7 +4,7 @@
   "description": "",
   "main": ".eleventy.js",
   "scripts": {
-    "start": "npx @11ty/eleventy --serve --quiet"
+    "start": "ELEVENTY_DEV=true npx @11ty/eleventy --serve --quiet"
   },
   "keywords": [],
   "author": "",

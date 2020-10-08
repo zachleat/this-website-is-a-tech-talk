@@ -158,6 +158,10 @@ class Typer {
 					this.addCursor(el);
 				}
 				count++;
+
+				if(obj.next.length - 1 === count) {
+					el.scrollIntoView();
+				}
 			}
 			this.insertOutputHtml();
 		} else {

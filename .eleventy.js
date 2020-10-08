@@ -135,6 +135,11 @@ module.exports = function(eleventyConfig) {
 	});
 
 	eleventyConfig.addFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors, offsetToBody) {
+		if(process.env.ELEVENTY_DEV && content.length > 8000) {
+			console.warn( "⚠️⚠️⚠️ Warning: you’re in development mode!" );
+			return content;
+		}
+
 		let highlightedContent = syntaxHighlightFunction(content, codeFormat, "", { trim: false });
 		let jsdoc = new JSDOM(`<html><body>${highlightedContent}</body></html>`);
 		let { document } = jsdoc.window;

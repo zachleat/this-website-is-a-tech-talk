@@ -1,0 +1,46 @@
+{
+  "url": "https://competent-murdock-3b6689.netlify.app/",
+  "requestedUrl": "https://competent-murdock-3b6689.netlify.app/",
+  "timestamp": 1602182285049,
+  "ranks": {
+    "hundos": 1,
+    "performance": 1,
+    "accessibility": 1,
+    "cumulative": 1
+  },
+  "lighthouse": {
+    "version": "6.4.1",
+    "performance": 1,
+    "accessibility": 0.94,
+    "bestPractices": 1,
+    "seo": 1,
+    "total": 394
+  },
+  "firstContentfulPaint": 1257.664,
+  "speedIndex": 1720.6533959904668,
+  "largestContentfulPaint": 1257.664,
+  "totalBlockingTime": 0,
+  "cumulativeLayoutShift": 0,
+  "timeToInteractive": 1257.664,
+  "maxPotentialFirstInputDelay": 16,
+  "timeToFirstByte": 182.506,
+  "weight": {
+    "summary": "5 requests • 42 KiB",
+    "total": 43144,
+    "image": 1350,
+    "imageCount": 1,
+    "script": 39506,
+    "scriptCount": 2,
+    "document": 1221,
+    "font": 0,
+    "fontCount": 0,
+    "stylesheet": 1067,
+    "stylesheetCount": 1,
+    "thirdParty": 0,
+    "thirdPartyCount": 0
+  },
+  "axe": {
+    "passes": 23,
+    "violations": 3
+  }
+}
