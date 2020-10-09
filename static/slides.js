@@ -1,5 +1,11 @@
 class Slides {
 	constructor() {
+		this.showIframe();
+	}
+	
+	showIframe() {
+		let iframe = document.querySelector("iframe[data-js].frame-resizer-iframe");
+		iframe.classList.add("slide-iframe-enabled");
 	}
 	
 	getPreviousHref() {

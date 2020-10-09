@@ -12,7 +12,8 @@
 
 * Pause delay at specified indeces (or at end of typing config entries) (e.g. on /slides/7/ and especially on /slides/8/)
 * Add markdown support
-* scroll to offset on external iframe slide 9c
+* scroll to offset on external iframe slide 9.3
+	* scroll to offset per timer (filmstrip scrolls 1s of frames in 1s of time)
 * CSS `zoom: 2` would allow custom zooms per slide
 	* Automatic pause delay for non alphanumeric characters
 * Cache images locally

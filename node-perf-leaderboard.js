@@ -10,10 +10,12 @@ const fsp = require("fs").promises;
 		// "https://fervent-beaver-9fea8f.netlify.app/benchmark/6/",
 		// "https://fervent-beaver-9fea8f.netlify.app/benchmark/7a/",
 		// "https://fervent-beaver-9fea8f.netlify.app/benchmark/7c/",
-		"https://competent-murdock-3b6689.netlify.app/",
+		// "https://competent-murdock-3b6689.netlify.app/", // create-react-app
+		// "https://elastic-wescoff-4fe5e2.netlify.app/", // twitter export
 	];
 
-	let results = await PerfLeaderboard(urls, 3);
+	let results = await PerfLeaderboard(urls, 1);
+	// console.log( results );
 	for(let result of results) {
 		let slug;
 		if(urlMap[result.requestedUrl]) {

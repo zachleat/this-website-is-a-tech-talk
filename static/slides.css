@@ -48,6 +48,16 @@
 	min-height: 30vh;
 	resize: both;
 }
+.slide-preview-fullscreen .frame-resizer.frame-resizer {
+	width: 90vw;
+}
+
+iframe[data-js] {
+	display: none;
+}
+iframe[data-js].slide-iframe-enabled {
+	display: block;
+}
 
 /* Window size */
 .resizeasaurus-size.resizeasaurus-size {
@@ -117,6 +127,7 @@
 	display: flex;
 	margin: 0;
 	border: none;
+	background-color: #fff;
 }
 .frame-resizer {
 	flex-direction: column;
@@ -137,6 +148,9 @@
 	width: 100%;
 	height: 100%;
 	/* pointer-events: none; */
+}
+.frame-noscript {
+	height: 100%;
 }
 .slide-iframe-interaction .frame-resizer-iframe {
 	pointer-events: all;
@@ -198,6 +212,7 @@
 	top: calc(2 * var(--slide-border-width));
 	right: calc(2 * var(--slide-border-width));
 	font-size: 0.5em; /* 8px /16 */
+	font-variant-numeric: tabular-nums;
 }
 .slide-nav a {
 	text-decoration: none;

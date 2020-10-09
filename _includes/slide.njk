@@ -3,6 +3,7 @@ layout: base.njk
 theme: prism-material-oceanic
 format: html
 preview: true
+fullscreen: false
 orientation: horizontal
 ratio: "60-40"
 autoplay: false
@@ -21,6 +22,7 @@ performBenchmark: false
 ---
 <div class="slide theme-{{ theme }}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
+	{%- if preview and fullscreen %} slide-preview-fullscreen{% endif %}
 	{%- if autoplay %} slide-autoplay{% endif %}
 	{%- if showWindowSize %} slide-windowsize{% endif %}
 	{%- if not showCursor %} slide-hidecursor{% endif %}
@@ -55,10 +57,16 @@ performBenchmark: false
 						{%- endif -%}
 					{%- endif %}
 				</div>
-				<iframe class="frame-resizer-iframe"
+				<iframe data-js class="frame-resizer-iframe"
 					{%- if externalIframeSrc or externalIframeSrcDoc %} data-external-iframe {% endif -%}
 					src="{% if externalIframeSrc %}{{ externalIframeSrc }}{% else %}data:text/html;charset=utf-8,{% endif %}"
 					{%- if externalIframeSrcDoc %} srcdoc="{{ externalIframeSrcDoc }}"{% endif %}></iframe>
+				<noscript class="frame-noscript">
+					<iframe class="frame-resizer-iframe"
+					{%- if externalIframeSrc or externalIframeSrcDoc %} data-external-iframe {% endif -%}
+					src="{% if externalIframeSrc %}{{ externalIframeSrc }}{% else %}data:text/html;charset=utf-8,{% endif %}"
+					srcdoc="{{ externalIframeSrcDoc or content }}"></iframe>
+				</noscript>
 			</div>
 		</resize-asaurus>
 	</div>
