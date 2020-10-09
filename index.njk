@@ -2,7 +2,10 @@
 layout: base.njk
 ---
 <ol>
-  {%- for slide in collections.slide %}
-  <li><a href="{{ slide.url }}">Slide <code>{{ slide.fileSlug }}</code></a></li>
-  {%- endfor %}
+	{%- for slide in collections.slide %}
+	<li>
+		<a href="{{ slide.url }}">Slide <code>{{ slide.fileSlug }}</code></a>
+		{% if slide.data.description %}: {{ slide.data.description }}{% endif %}
+	</li>
+	{%- endfor %}
 </ol>

@@ -1,0 +1,16 @@
+---
+templateLanguage: liquid
+templateEngineOverride: html
+orientation: vertical
+typing:
+  - 64-245
+---
+{% layout "./layouts/liquid-layout.html" %}
+{% block content %}
+<h1>SPA Modes:</h1>
+<ul>
+	<li>Client: Components Once (JS)</li>
+	<li>Client/Server: Components Twice (HTML and JS, Hydration)</li>
+	<li><del>Server without Client?</del></li>
+</ul>
+{% endblock %}

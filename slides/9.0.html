@@ -1,0 +1,20 @@
+---
+templateLanguage: liquid
+templateEngineOverride: html
+orientation: vertical
+typing:
+  - 70-150
+# Sometimes SPA does client rendering
+#<ul>
+#	<li>Client Render</li>
+#	<li>Dynamic Render (Request time/SSR)</li>
+#	<li>Static (Build time)</li>
+#</ul>
+---
+{% layout "./layouts/liquid-layout.html" %}
+{% block content %}
+<ul>
+	<li>Single Page Applications (SPA)</li>
+	<li>Multi Page Applications (MPA)</li>
+</ul>
+{% endblock %}

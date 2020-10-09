@@ -35,7 +35,7 @@ performBenchmark: false
 	{% if content %}
 		{{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
 	{% else %}
-		{% if not externalIframeSrc %}
+		{% if not externalIframeSrc and not externalIframeSrcDoc %}
 			{% highlight "html" %}<!-- Needs more HTML -->{% endhighlight %}
 		{% endif %}
 	{% endif %}
