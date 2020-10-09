@@ -1,14 +1,14 @@
 ---
-title: This Web Site is a Tech Talk
+pageTitle: This Web Site is a Tech Talk
 ---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{{ title }}</title>
+		<title>{% if description %}{{ description }} ({{ pageTitle }}){% else %}{{ pageTitle }}{% endif %}</title>
 		<link rel="stylesheet" href="/static/slides.css">
-		<link rel="stylesheet" href="/static/typer-letter.css">
+		<link rel="stylesheet" href="/static/characterwrap.css">
 {% if theme %}
 		<link rel="stylesheet" href="/static/{{ theme }}.css">
 {% endif %}
@@ -19,7 +19,7 @@ title: This Web Site is a Tech Talk
 		<link rel="stylesheet" href="/static/style.css">
 		<noscript>
 			<style>
-			.typer-letter {
+			.charwrap {
 				display: inline-block;
 			}
 			</style>

@@ -7,28 +7,28 @@
 	}
 }
 
-.typer-letter {
+.charwrap {
   display: none;
 }
-.typer-letter-typed {
+.charwrap-typed {
   display: inline-block;
 }
-.typer-letter-typed-initial {
+.charwrap-typed-initial {
   opacity: .7;
 }
-.typer-letter-cursor {
+.charwrap-cursor {
   border-right: 2px solid transparent;
 }
 /* TODO add .slide:focus and .slide:focus-within to only show cursor when focused */
-.typer-letter-cursor-enabled .typer-letter-cursor {
+.charwrap-cursor-enabled .charwrap-cursor {
 	border-color: currentColor;
   animation: blinkingCursor 1s infinite steps(2, start);
 }
-.slide-hidecursor .typer-letter-cursor {
+.slide-hidecursor .charwrap-cursor {
 	border-color: transparent !important;
 	animation: none !important;
 }
-/* .typer-letter-deleted {
+/* .charwrap-deleted {
 	color: red;
 	text-decoration: wavy underline red;
 } */

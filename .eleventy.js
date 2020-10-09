@@ -1,111 +1,6 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const syntaxHighlightFunction = syntaxHighlight.pairedShortcode;
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const SyntaxHighlightCharacterWrap = syntaxHighlight.characterWrap;
 const graymatter = require("gray-matter");
-
-// 0 => type to show all
-// 1 => type to show from 1+
-// 1,2 => type to show from 1 to 2
-// 2,3 5,6 => type to show from 2 to 3 and from 5 to 6
-//   in other words, show 1 and 4 and 7+
-
-function getTypingConfigResults(typingConfig, indexCounter, multipleCursors = false) {
-	let charIndex = indexCounter.valueOf();
-	let lowestIndex = 99999999;
-	let waitToShow = {};
-	let showCursor = false;
-
-	for(let cfg of typingConfig) {
-		let start, end;
-		cfg = "" + cfg;
-
-		if(cfg.indexOf(",") > -1) { // start,length
-			let split = cfg.split(",");
-			start = parseInt(split[0], 10);
-			end = split.length > 1 ? start + parseInt(split[1], 10) : (charIndex+1);
-		} else if(cfg.indexOf("-") > -1) { // start,end
-			let split = cfg.split("-");
-			start = parseInt(split[0], 10);
-			end = split.length > 1 ? parseInt(split[1], 10) : (charIndex+1);
-		} else {
-			start = parseInt(cfg, 10);
-			end = charIndex + 1;
-		}
-
-		for(let j = start+1; j < end; j++) {
-			waitToShow[j] = true;
-		}
-		if(multipleCursors && start === charIndex) {
-			showCursor = true;
-		}
-		lowestIndex = Math.min(lowestIndex, start);
-	}
-
-	if(!multipleCursors && lowestIndex === charIndex) {
-		showCursor = true;
-	}
-	return { showTyped: !waitToShow[charIndex], showCursor };
-}
-
-
-function modifyNode(node, typingConfig, multipleCursors, indexCounter) {
-	let classes = ["typer-letter"];
-	let showTyped = true;
-	let showCursor = false;
-
-	indexCounter.add();
-	let results = getTypingConfigResults(typingConfig, indexCounter, multipleCursors);
-	showTyped = results.showTyped;
-	showCursor = results.showCursor;
-
-	if(showTyped) {
-		classes.push("typer-letter-typed typer-letter-typed-initial");
-	}
-	if(showCursor) {
-		classes.push("typer-letter-cursor typer-letter-cursor-initial");
-	}
-	node.className = classes.join(" ");
-	node.setAttribute("data-index", indexCounter.valueOf());
-}
-
-class IndexCounter {
-	constructor() {
-		this.index = 0;
-	}
-	
-	add() {
-		this.index++;
-	}
-	
-	valueOf() {
-		return this.index;
-	}
-}
-
-function walkTree(doc, root, typingConfig = [], multipleCursors = false, indexCounter = null) {
-	for(let node of root.childNodes) {
-		if(node.nodeType === 3) {
-			let characters = Array.from(node.textContent); // convert string to character array
-			for(let char of characters) {
-				let newTextEl = doc.createElement("span");
-				modifyNode(newTextEl, typingConfig, multipleCursors, indexCounter);
-				newTextEl.innerHTML = char;
-				node.parentNode.insertBefore(newTextEl, node);
-			}
-			node.remove();
-		} else if(node.nodeType === 1) {
-			if(node.classList.contains("typer-letter")) {
-				continue;
-			}
-			if(node.nodeName === "BR") {
-				modifyNode(node, typingConfig, multipleCursors, indexCounter);
-			} else {
-				walkTree(doc, node, typingConfig, multipleCursors, indexCounter);
-			}
-		}
-	}
-}
 
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPlugin(syntaxHighlight);
@@ -140,18 +35,21 @@ module.exports = function(eleventyConfig) {
 		return content.split("~/twitter/@").join("https://unavatar.now.sh/twitter/");
 	});
 
-	eleventyConfig.addFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors) {
-		if(process.env.ELEVENTY_DEV && content.length > 8000) {
-			console.warn( "⚠️⚠️⚠️ Warning: you’re in development mode!" );
-			return content;
-		}
+	eleventyConfig.addNunjucksAsyncFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors, callback) {
+		let wrap = new SyntaxHighlightCharacterWrap();
+		wrap.setTypingConfigArray(typingConfig);
+		wrap.setMultipleCursors(multipleCursors);
+		wrap.addContentTransform((content) => {
+			// don’t waste time doing those huge templates in dev mode
+			if(process.env.ELEVENTY_DEV && content.length > 8000) {
+				console.warn( "⚠️⚠️⚠️ Warning: you’re in development mode!" );
+				return false;
+			}
+		});
 
-		let highlightedContent = syntaxHighlightFunction(content, codeFormat, "", { trim: false });
-		let jsdoc = new JSDOM(`<html><body>${highlightedContent}</body></html>`);
-		let { document } = jsdoc.window;
-		let counter = new IndexCounter();
-		walkTree(document, document.body, typingConfig, multipleCursors, counter);
-		return document.body.innerHTML;
+		wrap.wrapContent(content, codeFormat).then(wrappedContent => {
+			callback(null, wrappedContent);
+		});
 	});
 
 	eleventyConfig.addFilter("findCollectionIndex", (collection, page) => {

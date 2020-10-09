@@ -46,6 +46,6 @@ speedlify-score .speedlify-score {
 	font-family: Roboto Mono, monospace;
 	border-width: 0.1875em; /* 3px /16 */
 }
-.typer-letter-finished speedlify-score {
+.charwrap-finished speedlify-score {
 	opacity: 1;
 }

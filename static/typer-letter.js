@@ -7,14 +7,14 @@ class Typer {
 		this.paused = false;
 
 		this.classes = {
-			letter: "typer-letter",
-			cursor: "typer-letter-cursor",
-			cursorInitial: "typer-letter-cursor-initial",
-			cursorEnabled: "typer-letter-cursor-enabled",
-			typed: "typer-letter-typed",
-			typedInitial: "typer-letter-typed-initial",
-			deleted: "typer-letter-deleted",
-			finished: "typer-letter-finished",
+			letter: "charwrap",
+			cursor: "charwrap-cursor",
+			cursorInitial: "charwrap-cursor-initial",
+			cursorEnabled: "charwrap-cursor-enabled",
+			typed: "charwrap-typed",
+			typedInitial: "charwrap-typed-initial",
+			deleted: "charwrap-deleted",
+			finished: "charwrap-finished",
 		};
 		this.selectors = {
 			typed: `.${this.classes.letter}.${this.classes.typed}:not(.${this.classes.typedInitial})`,
