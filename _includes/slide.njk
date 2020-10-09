@@ -82,5 +82,5 @@ performBenchmark: false
 {%- if performBenchmark %}<a id="slide-nav-preview" href="{% if externalIframeSrc %}{{ externalIframeSrc }}{% else %}'/benchmark/{{ page.fileSlug }}/{% endif %}"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>&nbsp;{% endif %}
 <a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="visually-hidden">Previous Slide</span></a>
 <a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="visually-hidden">Next Slide</span>→</a>
-&nbsp;<span>{{ currentPostIndex + 1 }} of {{ collections.slide.length }}</span>
+&nbsp;<a href="/">{{ currentPostIndex + 1 }} of {{ collections.slide.length }}</a>
 </nav>

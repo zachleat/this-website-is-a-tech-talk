@@ -1,6 +1,20 @@
 :root {
 	--slide-border-width: 4px;
 }
+.slide-list {
+	padding: 1em 1em 1em 4em;
+	font-size: 2em;
+}
+.slide-list a {
+	text-decoration: none;
+}
+.slide-list a span {
+	text-decoration: underline;
+}
+.slide-list > li {
+	padding-left: 1em;
+	list-style-position: initial;
+}
 .slide {
 	min-height: 100%;
 	outline: none;
@@ -8,6 +22,11 @@
 }
 .slide.theme-prism-material-oceanic {
 	background-color: #263238;
+}
+.slide.theme-prism-material-oceanic,
+.slide.theme-prism-material-oceanic :link,
+.slide.theme-prism-material-oceanic :visited {
+	color: #fff;
 }
 .slide:focus,
 .slide:focus-within {
@@ -44,7 +63,7 @@
 .slide-preview-vertical .frame-resizer.frame-resizer,
 .slide-preview-vertical-flip .frame-resizer.frame-resizer {
 	flex-grow: 0;
-	width: 60%;
+	width: 70%;
 	min-height: 30vh;
 	resize: both;
 }

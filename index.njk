@@ -1,11 +1,15 @@
 ---
 layout: base.njk
 ---
-<ol>
-	{%- for slide in collections.slide %}
-	<li>
-		<a href="{{ slide.url }}"><code>{{ slide.fileSlug }}</code></a>
-		{% if slide.data.description %}: {{ slide.data.description }}{% endif %}
-	</li>
-	{%- endfor %}
-</ol>
+<div class="slide theme-prism-material-oceanic">
+	<ol class="slide-list">
+		{%- for slide in collections.slide %}
+		<li>
+			<a href="{{ slide.url }}">
+				{%- if slide.data.description %}<span>{{ slide.data.description }}</span> {% endif %}
+				<code>{{ slide.fileSlug }}</code>
+			</a>
+		</li>
+		{%- endfor %}
+	</ol>
+</div>
