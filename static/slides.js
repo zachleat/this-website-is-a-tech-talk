@@ -4,8 +4,10 @@ class Slides {
 	}
 	
 	showIframe() {
-		let iframe = document.querySelector("iframe[data-js].frame-resizer-iframe");
-		iframe.classList.add("slide-iframe-enabled");
+		let iframe = document.querySelector("iframe[data-js]");
+		if(iframe) {
+			iframe.classList.add("slide-iframe-enabled");
+		}
 	}
 	
 	getPreviousHref() {

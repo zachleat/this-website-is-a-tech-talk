@@ -292,6 +292,10 @@ class Typer {
 
 ;(function() {
 	let slideEl = document.querySelector(".slide");
+	if(!slideEl) {
+		return;
+	}
+
 	let typer = new Typer(slideEl);
 	if(slideEl.classList.contains("slide-autoplay")) {
 		setTimeout(() => {

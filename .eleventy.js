@@ -117,8 +117,8 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addCollection("slide", function(collectionApi) {
 		return collectionApi.getFilteredByGlob("./slides/**/*.html").sort((a,b) => {
-			let ak = parseInt(a.fileSlug, 10);
-			let bk = parseInt(b.fileSlug, 10);
+			let ak = parseFloat(a.fileSlug, 10);
+			let bk = parseFloat(b.fileSlug, 10);
 			if(ak < bk) {
 				return -1;
 			} else if(ak > bk) {
