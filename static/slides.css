@@ -220,8 +220,8 @@ iframe[data-js].slide-iframe-enabled {
 	margin-bottom: -3px;
 	text-decoration: none;
 }
-.window-title,
-.window-title:visited {
+.window-title.window-title,
+.window-title.window-title:visited {
 	color: #000;
 }
 

@@ -7,6 +7,7 @@
 ## TODO content
 
 * Add lighthouse decreasing animation on slide 8d
+* Add more Levels throughout content (see Slide 3.7)
 
 ## TODO features
 
