@@ -1,6 +1,7 @@
 class Slides {
 	constructor() {
 		this.showIframe();
+		this.removeNestedNavigation();
 	}
 	
 	showIframe() {
@@ -10,6 +11,25 @@ class Slides {
 		}
 	}
 	
+	removeNestedNavigation() {
+		let iframe = document.querySelector("iframe");
+		iframe.addEventListener("load", (e) => {
+			try {
+				let nav = e.target.contentDocument.querySelector("nav");
+				if(nav) {
+					nav.style.display = "none";
+				}
+			} catch(e) {}
+		})
+	}
+
+	getIndexHref() {
+		let indexEl = document.getElementById("slide-nav-index");
+		if(indexEl) {
+			return indexEl.getAttribute("href")
+		}
+	}
+
 	getPreviousHref() {
 		return document.getElementById("slide-nav-previous").getAttribute("href")
 	}
@@ -40,8 +60,15 @@ class Slides {
 			}
 			event.preventDefault();
 		}
+
 		// ⌘ up
 		if(event.metaKey && code === 38) {
+			let index = this.getIndexHref();
+			location.href = index;
+		}
+
+		// ⌘ down
+		if(event.metaKey && code === 40) {
 			let preview = this.getPreviewHref();
 			location.href = preview;
 		}

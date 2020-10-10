@@ -1,0 +1,35 @@
+---
+description: Loop
+templateEngineOverride: html
+externalIframeSrc: "/slides/1.0/"
+typing:
+  - 999999
+---
+<link rel="stylesheet" href="/css/prism-material-oceanic.css">
+<style>
+.charwrap {
+  display: none;
+}
+.charwrap.typed {
+  display: initial;
+}
+</style>
+
+<iframe></iframe>
+
+{% highlightCharacterWrap html %}
+slkdjflkdjsklfjkldsjflsdk
+{% endhighlightCharacterWrap %}
+
+<script>
+document.addEventListener("keydown", function(e) {
+	let nextCharacter = document.querySelector(".charwrap:not(.typed)");
+	if(nextCharacter) {
+		nextCharacter.classList.add("typed");
+	}
+
+	let typedCharacters = document.querySelectorAll(".charwrap.typed");
+	let content = [...typedCharacters].map(entry => entry.textContent).join("");
+	document.querySelector("iframe").setAttribute("srcdoc", content);
+});
+</script>

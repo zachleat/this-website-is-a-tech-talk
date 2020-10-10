@@ -1,0 +1,39 @@
+---js
+{
+	code: `slkdjflkdjsklfjkldsjflsdk`,
+	format: 'html'
+}
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" href="/css/prism-material-oceanic.css">
+		<style>
+		.charwrap {
+			display: none;
+		}
+		.charwrap.typed {
+			display: initial;
+		}
+		</style>
+	</head>
+	<body>
+		<iframe srcdoc="" style="background-color: #fff"></iframe>
+		{{ code | characterWrap(format, ["0"]) | safe }}
+		<script>
+		document.addEventListener("keydown", function(e) {
+			let nextCharacter = document.querySelector(".charwrap:not(.typed)");
+			if(nextCharacter) {
+				nextCharacter.classList.add("typed");
+			}
+
+			let typedCharacters = document.querySelectorAll(".charwrap.typed");
+			let content = [...typedCharacters].map(entry => entry.textContent).join("");
+			document.querySelector("iframe").setAttribute("srcdoc", content);
+		});
+		</script>
+	</body>
+</html>

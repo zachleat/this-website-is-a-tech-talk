@@ -1,0 +1,27 @@
+---js
+{
+	code: `// is this highlighted
+var test = "hi";`,
+	format: 'js'
+}
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" href="/css/prism-material-oceanic.css">
+		<style>
+		.charwrap {
+			display: none;
+		}
+		.charwrap.typed {
+			display: initial;
+		}
+		</style>
+	</head>
+	<body>
+		{{ code | characterWrap(format, ["0"]) | safe }}
+	</body>
+</html>

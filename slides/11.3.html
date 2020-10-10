@@ -1,14 +1,20 @@
 ---
-description:
+description: Syntax Highlight
 templateLanguage: liquid
 templateEngineOverride: html
-orientation: vertical
 ---
-<link rel="stylesheet" href="/css/prism-material-oceanic.css">
 
-<pre class="language-css">
-<code>* { outline: 1px solid; }</code>
+<pre>
+<code>// is this highlighted
+var test = "hi";</code>
 </pre>
+
+<pre class="language-js">
+<code>// is this highlighted
+var test = "hi";</code>
+</pre>
+
+<link rel="stylesheet" href="/css/prism-material-oceanic.css">
 
 {% highlight js %}
 // is this highlighted

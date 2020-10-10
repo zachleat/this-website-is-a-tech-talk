@@ -1,3 +1,4 @@
+body, /* this was added to make the last section easier */
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #c3cee3;

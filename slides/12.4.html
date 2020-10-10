@@ -1,0 +1,22 @@
+---
+description: Typing output
+templateLanguage: liquid
+templateEngineOverride: html
+typing:
+  - 9999
+externalIframeSrc: /benchmark/12.4/
+---
+<link rel="stylesheet" href="/css/prism-material-oceanic.css">
+<style>
+.charwrap {
+  display: none;
+}
+.charwrap.typed {
+  display: initial;
+}
+</style>
+
+{% highlightCharacterWrap js %}
+// is this highlighted
+var test = "hi";
+{% endhighlightCharacterWrap %}

@@ -1,0 +1,32 @@
+---
+description:
+templateLanguage: liquid
+templateEngineOverride: html
+externalIframeSrc: "/benchmark/13.0/"
+typing:
+  - 150-170
+---
+<link rel="stylesheet" href="/css/prism-material-oceanic.css">
+<style>
+.charwrap {
+  display: none;
+}
+.charwrap.typed {
+  display: initial;
+}
+</style>
+
+<iframe></iframe>
+
+{% highlightCharacterWrap html %}
+slkdjflkdjsklfjkldsjflsdk
+{% endhighlightCharacterWrap %}
+
+<script>
+document.addEventListener("keydown", function(e) {
+	let nextCharacter = document.querySelector(".charwrap:not(.typed)");
+	if(nextCharacter) {
+		nextCharacter.classList.add("typed");
+	}
+});
+</script>

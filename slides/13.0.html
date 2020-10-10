@@ -1,0 +1,32 @@
+---
+description: Live type the HTML
+templateLanguage: liquid
+templateEngineOverride: html
+typing:
+  - 180,7
+  - 190-216
+deleteDelay: 0
+externalIframeSrc: "/benchmark/13.0/"
+---
+<link rel="stylesheet" href="/css/prism-material-oceanic.css">
+<style>
+.charwrap {
+  display: none;
+}
+.charwrap.typed {
+  display: initial;
+}
+</style>
+
+{% highlightCharacterWrap js␡␡html %}
+slkdjflkdjsklfjkldsjflsdk
+{% endhighlightCharacterWrap %}
+
+<script>
+document.addEventListener("keydown", function(e) {
+	let nextCharacter = document.querySelector(".charwrap:not(.typed)");
+	if(nextCharacter) {
+		nextCharacter.classList.add("typed");
+	}
+});
+</script>

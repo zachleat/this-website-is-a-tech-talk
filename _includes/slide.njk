@@ -27,7 +27,7 @@ format: html
 # Render this code on the client, supported: `liquid`
 templateLanguage: false
 ---
-<div class="slide theme-{{ theme }}
+<div class="slide slide-{{ page.fileSlug | getDashedSlug }} theme-{{ theme }}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
 	{%- if preview and fullscreen %} slide-preview-fullscreen{% endif %}
 	{%- if autoplay %} slide-autoplay{% endif %}
@@ -42,7 +42,7 @@ templateLanguage: false
 		{% set content = page.inputPath | getFileContents %}
 	{% endif %}
 	{% if content %}
-		{{ content | getJsdomLetters(format, typing, multipleCursors) | safe }}
+		{{ content | characterWrap(format, typing, multipleCursors) | safe }}
 	{% else %}
 		{% if not externalIframeSrc and not externalIframeSrcDoc %}
 			{% highlight "html" %}<!-- Needs more HTML -->{% endhighlight %}
@@ -72,7 +72,7 @@ templateLanguage: false
 					<iframe class="frame-resizer-iframe"
 					{%- if externalIframeSrc or externalIframeSrcDoc %} data-external-iframe {% endif -%}
 					src="{% if externalIframeSrc %}{{ externalIframeSrc }}{% else %}data:text/html;charset=utf-8,{% endif %}"
-					srcdoc="{{ externalIframeSrcDoc or content }}"></iframe>
+					{% if not externalIframeSrc %}srcdoc="{{ externalIframeSrcDoc or content }}"{% endif %}></iframe>
 				</noscript>
 			</div>
 		</resize-asaurus>
@@ -89,5 +89,5 @@ templateLanguage: false
 {%- if performBenchmark %}<a id="slide-nav-preview" href="{% if externalIframeSrc %}{{ externalIframeSrc }}{% else %}'/benchmark/{{ page.fileSlug }}/{% endif %}"><span class="visually-hidden">Full Preview of Slide</span>🔭</a>&nbsp;{% endif %}
 <a id="slide-nav-previous"{% if previousPost %} href="{{ previousPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}>←<span class="visually-hidden">Previous Slide</span></a>
 <a id="slide-nav-next"{% if nextPost %} href="{{ nextPost.url }}"{% else %} class="slide-nav-disabled"{% endif %}><span class="visually-hidden">Next Slide</span>→</a>
-&nbsp;<a href="/">{{ currentPostIndex + 1 }} of {{ collections.slide.length }}</a>
+&nbsp;<a id="slide-nav-index" href="/">{{ currentPostIndex + 1 }} of {{ collections.slide.length }}</a>
 </nav>

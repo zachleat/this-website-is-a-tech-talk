@@ -1,5 +1,5 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const SyntaxHighlightCharacterWrap = syntaxHighlight.characterWrap;
+const SyntaxHighlightCharacterWrap = syntaxHighlight.CharacterWrap;
 const graymatter = require("gray-matter");
 
 module.exports = function(eleventyConfig) {
@@ -35,7 +35,7 @@ module.exports = function(eleventyConfig) {
 		return content.split("~/twitter/@").join("https://unavatar.now.sh/twitter/");
 	});
 
-	eleventyConfig.addNunjucksAsyncFilter("getJsdomLetters", function(content, codeFormat, typingConfig, multipleCursors, callback) {
+	eleventyConfig.addFilter("characterWrap", function(content, codeFormat, typingConfig, multipleCursors) {
 		let wrap = new SyntaxHighlightCharacterWrap();
 		wrap.setTypingConfigArray(typingConfig);
 		wrap.setMultipleCursors(multipleCursors);
@@ -47,9 +47,7 @@ module.exports = function(eleventyConfig) {
 			}
 		});
 
-		wrap.wrapContent(content, codeFormat).then(wrappedContent => {
-			callback(null, wrappedContent);
-		});
+		return wrap.wrapContent(content, codeFormat);
 	});
 
 	eleventyConfig.addFilter("findCollectionIndex", (collection, page) => {
@@ -71,6 +69,10 @@ module.exports = function(eleventyConfig) {
 		return matter.content;
 	});
 	
+	eleventyConfig.addFilter("getDashedSlug", slug => {
+		return slug.replace(/\./g, "-");
+	});
+
 	eleventyConfig.addFilter("getBenchResult", (benchmarks, slug) => {
 		return benchmarks[slug.replace(/\./g, "-")];
 	});

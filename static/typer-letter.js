@@ -246,21 +246,8 @@ class Typer {
 			this.next();
 		}
 	}
-	
-	async renderLiquid(content, data = {}) {
-		let { Liquid } = await import("/static/liquid.js");
-		
-		window.Prism = window.Prism || {};
-		window.Prism.manual = true;
-		await import("/static/prism.js");
 
-		let engine = new Liquid({
-			extname: '.html',
-			cache: true
-		});
-		
-		// Add internal syntax highlighting support
-		let shortcodeName = "highlight";
+	addSyntaxHighlighting(engine, shortcodeName) {
 		let shortcodeFn = function(content, lang) {
 			if(lang === "js") {
 				lang = "javascript";
@@ -277,7 +264,6 @@ class Typer {
 				var stream = engine.parser
 					.parseStream(remainTokens)
 					.on("template", tpl => {
-						console.log( tpl );
 						this.templates.push(tpl);
 					})
 					.on("tag:end" + shortcodeName, () => stream.stop())
@@ -300,6 +286,23 @@ class Typer {
 				);
 			},
 		})
+	}
+
+	async renderLiquid(content, data = {}) {
+		let { Liquid } = await import("/static/liquid.js");
+		
+		window.Prism = window.Prism || {};
+		window.Prism.manual = true;
+		await import("/static/prism.js");
+
+		let engine = new Liquid({
+			extname: '.html',
+			cache: true
+		});
+		
+		this.addSyntaxHighlighting(engine, "highlight");
+		this.addSyntaxHighlighting(engine, "highlightCharacterWrap");
+
 		let parsed = await engine.parse(content, "/");
 		// console.log( ">>> PARSED", parsed );
 		let html = await engine.render(parsed, data, {

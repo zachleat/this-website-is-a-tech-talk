@@ -1,0 +1,22 @@
+---
+description: Character Wrap Configuration
+format: js
+orientation: vertical
+preview: false
+typing:
+  - 90,54
+  - 232-418
+---
+// .eleventy.js
+
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const CharacterWrap = syntaxHighlight.characterWrap;
+
+module.exports = function(eleventyConfig) {
+	eleventyConfig.addPlugin(syntaxHighlight);
+	
+	eleventyConfig.addPairedShortcode("highlightCharacterWrap", (content, syntaxType) => {
+		let charWrap = new CharacterWrap();
+		return charWrap.wrapContent(content, syntaxType);
+	});
+};
