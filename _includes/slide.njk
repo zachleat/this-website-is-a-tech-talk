@@ -1,7 +1,6 @@
 ---
 layout: base.njk
 theme: prism-material-oceanic
-format: html
 preview: true
 fullscreen: false
 orientation: horizontal
@@ -17,8 +16,16 @@ allowIframeInteraction: false
 title:
 externalIframeSrc:
 externalIframeSrcDoc:
-templateLanguage: false
 performBenchmark: false
+
+# Change the syntax of the code highlighted
+format: html
+
+# change the template language of the 11ty slide (server render)
+# templateEngineOverride:
+
+# Render this code on the client, supported: `liquid`
+templateLanguage: false
 ---
 <div class="slide theme-{{ theme }}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}

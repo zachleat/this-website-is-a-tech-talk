@@ -1,7 +1,40 @@
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #c3cee3;
+	background: #263238;
 }
+
+/* Additions */
+code,
+pre {
+	font-family: Roboto Mono, monospace;
+	font-size: 1em;
+	line-height: 1.5em;
+}
+pre[class*="language-"] {
+	white-space: pre-wrap;
+	padding: .5em;
+}
+pre[class*="language-"],
+code[class*="language-"] {
+	user-select: none;
+
+	text-align: left;
+
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	
+	-ms-word-break: break-all;
+	word-break: break-all;
+	word-break: break-word;
+}
+/* End additions */
 
 code[class*="language-"]::-moz-selection,
 pre[class*="language-"]::-moz-selection,
@@ -21,18 +54,6 @@ pre[class*="language-"] ::selection {
 	white-space: normal;
 	border-radius: 0.2em;
 	padding: 0.1em;
-}
-
-pre[class*="language-"] {
-	/* overflow: auto; */
-	position: relative;
-	/* margin: 0.5em 0; */
-}
-
-.language-css > code,
-.language-sass > code,
-.language-scss > code {
-	color: #fd9170;
 }
 
 [class*="language-"] .namespace {

@@ -249,10 +249,57 @@ class Typer {
 	
 	async renderLiquid(content, data = {}) {
 		let { Liquid } = await import("/static/liquid.js");
+		
+		window.Prism = window.Prism || {};
+		window.Prism.manual = true;
+		await import("/static/prism.js");
+
 		let engine = new Liquid({
 			extname: '.html',
 			cache: true
 		});
+		
+		// Add internal syntax highlighting support
+		let shortcodeName = "highlight";
+		let shortcodeFn = function(content, lang) {
+			if(lang === "js") {
+				lang = "javascript";
+			}
+
+			return `<pre class="language-${lang}"><code>${window.Prism.highlight(content.trim(), Prism.languages[lang], lang)}</code></pre>`;
+		}
+		engine.registerTag(shortcodeName, {
+			parse: function (tagToken, remainTokens) {
+				this.name = tagToken.name;
+				this.args = tagToken.args;
+				this.templates = [];
+
+				var stream = engine.parser
+					.parseStream(remainTokens)
+					.on("template", tpl => {
+						console.log( tpl );
+						this.templates.push(tpl);
+					})
+					.on("tag:end" + shortcodeName, () => stream.stop())
+					.on("end", () => {
+						throw new Error(`tag ${tagToken.raw} not closed`);
+					});
+
+				stream.start();
+			},
+			render: function* (ctx) {
+				const html = yield this.liquid.renderer.renderTemplates(
+					this.templates,
+					ctx
+				);
+
+				return shortcodeFn.call(
+					ctx,
+					html,
+					this.args
+				);
+			},
+		})
 		let parsed = await engine.parse(content, "/");
 		// console.log( ">>> PARSED", parsed );
 		let html = await engine.render(parsed, data, {
@@ -271,6 +318,11 @@ class Typer {
 			for(let letter of untypedLetters) {
 				letter.remove();
 			}
+			let brs = cloned.querySelectorAll("br");
+			// add line breaks because <br> won’t show up in textContent
+			for(let br of brs) {
+				br.before(document.createTextNode("\n"));
+			}
 			let content = cloned.textContent;
 			let templateLanguage = this.slide.getAttribute("data-slide-template-lang");
 			if(templateLanguage) {
@@ -280,6 +332,7 @@ class Typer {
 					console.warn( "Render error", e );
 				}
 			}
+
 			content = content.split("~/twitter/@").join("https://unavatar.now.sh/twitter/");
 
 			// throttle it
