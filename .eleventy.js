@@ -40,9 +40,9 @@ module.exports = function(eleventyConfig) {
 		wrap.setTypingConfigArray(typingConfig);
 		wrap.setMultipleCursors(multipleCursors);
 		wrap.addContentTransform((content) => {
-			// don’t waste time doing those huge templates in dev mode
+			// don’t waste time doing huge templates in dev mode
 			if(process.env.ELEVENTY_DEV && content.length > 8000) {
-				console.warn( "⚠️⚠️⚠️ Warning: you’re in development mode!" );
+				console.warn( "⚠️⚠️⚠️ Warning: Large template skipped in development mode!" );
 				return false;
 			}
 		});
@@ -69,6 +69,10 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addFilter("getFileContents", filepath => {
 		let matter = graymatter.read(filepath);
 		return matter.content;
+	});
+	
+	eleventyConfig.addFilter("getBenchResult", (benchmarks, slug) => {
+		return benchmarks[slug.replace(/\./g, "-")];
 	});
 	
 	eleventyConfig.addFilter("toJSON", function(obj) {

@@ -73,7 +73,7 @@ performBenchmark: false
 {% endif %}
 </div>
 {% if performBenchmark %}
-<speedlify-score score requests weight raw-data='{{ benchmark[page.fileSlug] | toJSON | safe }}'></speedlify-score>
+<speedlify-score score requests weight raw-data='{{ benchmark | getBenchResult(page.fileSlug) | toJSON | safe }}'></speedlify-score>
 {% endif %}
 <nav class="slide-nav">
 {% set currentPostIndex = collections.slide | findCollectionIndex(page) %}
