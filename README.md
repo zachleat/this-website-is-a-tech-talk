@@ -7,14 +7,13 @@
 
 ## Checklist before giving the talk
 
-* [x] Turn off scrollbars
+* [ ] Turn off development mode
 * [ ] Turn off notifications (disable anything that will reveal browser)
+* [x] Turn off scrollbars
 
 ## TODO content
 
-* publish syntaxlighter npm package and consume it
-* Add lighthouse decreasing animation on slide 8d
-* Add more Levels throughout content (see Slide 3.7)
+
 
 ## TODO features
 
