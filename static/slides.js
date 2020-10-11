@@ -1,9 +1,20 @@
 class Slides {
 	constructor() {
+		this.addJsClass();
 		this.showIframe();
 		this.removeNestedNavigation();
 	}
 	
+	addJsClass() {
+		let slide = document.querySelector(".slide");
+		if(slide) {
+			slide.classList.add("animation");
+			requestAnimationFrame(() => {
+				slide.classList.add("animationend");
+			});
+		}
+	}
+
 	showIframe() {
 		let iframe = document.querySelector("iframe[data-js]");
 		if(iframe) {
@@ -13,14 +24,16 @@ class Slides {
 	
 	removeNestedNavigation() {
 		let iframe = document.querySelector("iframe");
-		iframe.addEventListener("load", (e) => {
-			try {
-				let nav = e.target.contentDocument.querySelector("nav");
-				if(nav) {
-					nav.style.display = "none";
-				}
-			} catch(e) {}
-		})
+		if(iframe) {
+			iframe.addEventListener("load", (e) => {
+				try {
+					let nav = e.target.contentDocument.querySelector("nav");
+					if(nav) {
+						nav.style.display = "none";
+					}
+				} catch(e) {}
+			});
+		}
 	}
 
 	getIndexHref() {

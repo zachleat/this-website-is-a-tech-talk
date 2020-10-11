@@ -213,6 +213,9 @@ iframe[data-js].slide-iframe-enabled {
 	font-size: 0.5em; /* 8px /16 */
 	font-variant-numeric: tabular-nums;
 }
+.slide-nav-hide {
+	display: none;
+}
 .slide-nav a {
 	text-decoration: none;
 	line-height: 1;
@@ -228,7 +231,15 @@ iframe[data-js].slide-iframe-enabled {
 }
 
 
-/* Specific slides */
-.slide-14-0 .charwrap-typed-initial {
+/* Specific slide styles */
+.slide-1-0.animation {
+	opacity: 0;
+	transition: opacity 0.6s ease-out;
+}
+.slide-1-0.animationend {
+	opacity: 1;
+}
+.slide-14-0 .charwrap-typed-initial,
+.slide-14-1 .charwrap-typed-initial {
 	opacity: .3;
 }

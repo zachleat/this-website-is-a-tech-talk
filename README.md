@@ -3,6 +3,12 @@
 ## Features
 
 * `~` Use tilde to show all text on page without progressive play or animation.
+* Scrolls with the text if it goes longer than a page
+
+## Checklist before giving the talk
+
+* Turn off scrollbars
+* Turn off notifications (disable anything that will reveal browser)
 
 ## TODO content
 
@@ -28,8 +34,7 @@
 
 ### v2
 
-* Dom diffing for iframe srcdoc? DiffHTML morphdom, diff-dom, nanomorph
 * Type a word at a time
 * Show a line at a time
-* Make it scroll with the text if it goes longer than a page
 * Optional: enter to autoplay to index (but also make it not possible to delete that code)
+* Dom diffing for iframe srcdoc? DiffHTML morphdom, diff-dom, nanomorph

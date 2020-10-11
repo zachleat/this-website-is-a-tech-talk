@@ -3,6 +3,8 @@ layout: base.njk
 theme: prism-material-oceanic
 preview: true
 fullscreen: false
+fullscreenImage:
+showNavigation: true
 orientation: horizontal
 ratio: "60-40"
 autoplay: false
@@ -27,6 +29,9 @@ format: html
 # Render this code on the client, supported: `liquid`
 templateLanguage: false
 ---
+{% if fullscreenImage %}
+<img src="{{ fullscreenImage }}" style="width: 100%; height: 100%">
+{% else %}
 <div class="slide slide-{{ page.fileSlug | getDashedSlug }} theme-{{ theme }}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
 	{%- if preview and fullscreen %} slide-preview-fullscreen{% endif %}
@@ -79,10 +84,11 @@ templateLanguage: false
 	</div>
 {% endif %}
 </div>
+{% endif %}
 {% if performBenchmark %}
 <speedlify-score score requests weight raw-data='{{ benchmark | getBenchResult(page.fileSlug) | toJSON | safe }}'></speedlify-score>
 {% endif %}
-<nav class="slide-nav">
+<nav class="slide-nav{% if not showNavigation %} slide-nav-hide{% endif %}">
 {% set currentPostIndex = collections.slide | findCollectionIndex(page) %}
 {% set previousPost = collections.slide | getPreviousCollectionItem(page) %}
 {% set nextPost = collections.slide | getNextCollectionItem(page) %}
