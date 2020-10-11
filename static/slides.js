@@ -77,13 +77,17 @@ class Slides {
 		// ⌘ up
 		if(event.metaKey && code === 38) {
 			let index = this.getIndexHref();
-			location.href = index;
+			if(index) {
+				location.href = index;
+			}
 		}
 
 		// ⌘ down
 		if(event.metaKey && code === 40) {
 			let preview = this.getPreviewHref();
-			location.href = preview;
+			if(preview) {
+				location.href = preview;
+			}
 		}
 	}
 }

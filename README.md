@@ -7,8 +7,8 @@
 
 ## Checklist before giving the talk
 
-* Turn off scrollbars
-* Turn off notifications (disable anything that will reveal browser)
+* [x] Turn off scrollbars
+* [ ] Turn off notifications (disable anything that will reveal browser)
 
 ## TODO content
 
