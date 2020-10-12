@@ -35,6 +35,11 @@
 .slide:not(.slide-preview) {
 	font-size: 1.25em; /* 20px /16 */
 }
+.slide:not(.slide-preview):not(.slide-editor),
+.slide:not(.slide-preview):not(.slide-editor) code[class*="language-"],
+.slide:not(.slide-preview):not(.slide-editor) pre[class*="language-"] {
+	background-color: #000;
+}
 .slide-preview-vertical,
 .slide-preview-vertical-flip,
 .slide-preview-horizontal,

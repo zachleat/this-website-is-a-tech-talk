@@ -1,6 +1,12 @@
 ---
-description: Preview twitter.com Tweet
+description:
+templateLanguage: liquid
+templateEngineOverride: html
 orientation: vertical
-externalIframeSrcDoc: '<body style="margin: 0; background: #15202b"><img src="/static/img/tweet-live.png" style="width: 100%"></body>'
-title: https://mobile.twitter.com/zachleat/status/1169998370041208832
+typing:
+  - 68-118
 ---
+{% layout "./layouts/liquid-layout.html" %}
+{% block content %}
+<h1>Enough chatter, let’s keep building our web site!</h1>
+{% endblock %}

@@ -6,6 +6,9 @@ h1 {
 	font-size: 3em;
 	line-height: 1.15;
 }
+h1:empty {
+	background-color: transparent;
+}
 
 @supports (box-decoration-break: clone) or (-webkit-box-decoration-break: clone) {
 	h1 {

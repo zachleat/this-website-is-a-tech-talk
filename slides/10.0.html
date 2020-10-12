@@ -1,7 +1,12 @@
 ---
-description: Preview Twitter Export output
+description: Framework JavaScript bundle sizes
+templateLanguage: liquid
+templateEngineOverride: html
 orientation: vertical
-externalIframeSrcDoc: '<body style="margin: 0"><img src="/static/img/twitter-dump.png" style="width: 100%"></body>'
+typing:
+  - 68-155
 ---
-6.5 MB HTML file
-31,708 tweets
+{% layout "./layouts/liquid-layout.html" %}
+{% block content %}
+<h1>The SPA exception, not the SPA rule <img src="/static/img/spa-rule.png" alt="Ja rule"></h1>
+{% endblock %}
