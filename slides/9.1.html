@@ -3,9 +3,13 @@ templateLanguage: liquid
 templateEngineOverride: html
 orientation: vertical
 typing:
-  - 68-118
+  - 64-216
 ---
 {% layout "./layouts/liquid-layout.html" %}
 {% block content %}
-<h1>Somehow SPA became the de-facto industry default.</h1>
+<h1>SPA Flavors</h1>
+<ul>
+	<li>Client Render: Components Once (JS)</li>
+	<li>Client <u>and</u> Server Render: Components Twice (HTML and JS)</li>
+</ul>
 {% endblock %}

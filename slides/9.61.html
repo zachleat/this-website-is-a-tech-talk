@@ -1,0 +1,22 @@
+---
+templateLanguage: liquid
+templateEngineOverride: html
+orientation: vertical
+typing:
+  - 95,42
+  - 175,42
+  - 290,42
+  - 398,42
+  - 472-558
+---
+{% layout "./layouts/liquid-layout.html" %}
+{% block content %}
+<h1>SPA Flavors</h1>
+<ul>
+	<li><label>JS <progress value="1.0"></label> Client: Components Once (JS)</li>
+	<li><label>JS <progress value="1.0"></label> Client <u>and</u> Server Render: Components Twice (HTML and JS)</li>
+	<li><label>JS <progress value="0.5"></label> ❓ Partial Hydration (HTML for some/all, JS for some/all)</li>
+	<li><label>JS <progress value="0.2"></label> ❓ HTML for all, JS for none?</li>
+	<li><label>JS <progress value="0.0"></label> <del>❓ HTML for all, No JS?</del></li>
+</ul>
+{% endblock %}

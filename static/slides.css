@@ -79,6 +79,20 @@
 	width: 90vw;
 }
 
+/* WPT filmstrips */
+.slide-wpt-mobile .frame {
+	align-items: flex-start;
+}
+.slide-wpt-mobile .frame-resizer.frame-resizer.frame-resizer {
+	min-height: 46.875em; /* 750px /16 */
+}
+.slide-wpt-desktop .frame {
+	align-items: flex-start;
+}
+.slide-wpt-desktop .frame-resizer.frame-resizer.frame-resizer {
+	min-height: 29.6875em; /* 475px /16 */
+}
+
 iframe[data-js] {
 	display: none;
 }
@@ -174,7 +188,8 @@ iframe[data-js].slide-iframe-enabled {
 .window-circle {
 	display: inline-block;
 	height: 12px;
-	width: 12px;
+	min-width: 12px;
+	max-width: 12px;
 	border-radius: 12px;
 }
 .window-circle-red {

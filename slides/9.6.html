@@ -3,14 +3,15 @@ templateLanguage: liquid
 templateEngineOverride: html
 orientation: vertical
 typing:
-  - 64-245
+  - 202-309
 ---
 {% layout "./layouts/liquid-layout.html" %}
 {% block content %}
-<h1>SPA Modes:</h1>
+<h1>SPA Flavors</h1>
 <ul>
 	<li>Client: Components Once (JS)</li>
-	<li>Client/Server: Components Twice (HTML and JS, Hydration)</li>
-	<li><del>Server without Client?</del></li>
+	<li>Client <u>and</u> Server Render: Components Twice (HTML and JS)</li>
+	<li>❓ Partial Hydration (HTML for some/all, JS for some/all)</li>
+	<li>❓ HTML for all, JS for none?</li>
 </ul>
 {% endblock %}
