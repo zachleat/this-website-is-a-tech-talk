@@ -1,5 +1,5 @@
 :root {
-	--slide-border-width: 4px;
+	--slide-border-width: 3px;
 }
 .slide-list {
 	padding: 1em 1em 1em 4em;
@@ -31,6 +31,10 @@
 .slide:focus,
 .slide:focus-within {
 	border-color: rgba(0,0,0,.6);
+}
+.slide-iframe-interaction:focus,
+.slide-iframe-interaction:focus-within {
+	border-color: hsla(270deg, 50%, 40%, .4);
 }
 .slide:not(.slide-preview) {
 	font-size: 1.25em; /* 20px /16 */
