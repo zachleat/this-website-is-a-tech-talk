@@ -1,0 +1,20 @@
+---
+description:
+templateLanguage: liquid
+templateEngineOverride: html
+orientation: vertical
+typing:
+  - 64-315
+---
+{% layout "./layouts/liquid-layout.html" %}
+{% block content %}
+<h1>Page Weights</h1>
+<ol>
+  <li>Slide 1: <code>10.7 kB</code></li>
+  <li>Slide 2: <code>11.1 kB</code></li>
+  <li>Slide 3: <code>11.3 kB</code></li>
+  <li>Slide 4: <code>11.7 kB</code></li>
+  <li>Slide 5: <code>11.7 kB</code></li>
+  <li>…</li>
+</ol>
+{% endblock %}

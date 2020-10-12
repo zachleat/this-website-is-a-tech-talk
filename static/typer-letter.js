@@ -130,6 +130,7 @@ class Typer {
 
 	next(characterCount) {
 		let usingMultipleCursors = this.slide.classList.contains("slide-cursors-multiple");
+		let usingFunMode = this.slide.classList.contains("slide-fun-mode");
 		let obj = this._getNextCharacters(characterCount);
 
 		if(obj.next.length) {
@@ -151,7 +152,9 @@ class Typer {
 				el.classList.add(this.classes.typed);
 
 				// fun mode
-				// el.style.transform = `rotate(${Math.round(Math.random()*20) - 10}deg) scale(${Math.min(Math.random()+1, 1.5)})`;
+				if(usingFunMode) {
+					el.style.transform = `rotate(${Math.round(Math.random()*20) - 10}deg) scale(${Math.min(Math.random()+1, 1.5)})`;
+				}
 				
 				// important if characterCount > 1 (don’t want to add cursors to all characters)
 				if(usingMultipleCursors || count === obj.next.length - 1) {

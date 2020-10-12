@@ -19,6 +19,8 @@ title:
 externalIframeSrc:
 externalIframeSrcDoc:
 performBenchmark: false
+webpagetestFilmstrip: false
+funMode: false
 
 # Change the syntax of the code highlighted
 format: html
@@ -33,6 +35,7 @@ templateLanguage: false
 <img src="{{ fullscreenImage }}" style="width: 100%; height: 100%">
 {% else %}
 <div class="slide slide-{{ page.fileSlug | getDashedSlug }} theme-{{ theme }} {{ slideClass }}
+	{%- if funMode %} slide-fun-mode{% endif %}
 	{%- if webpagetestFilmstrip %} slide-wpt-{{ webpagetestFilmstrip }}{% endif %}
 	{%- if preview %} slide-preview slide-preview-{{ orientation }} slide-preview-{{ ratio }}{% endif %}
 	{%- if preview and fullscreen %} slide-preview-fullscreen{% endif %}
