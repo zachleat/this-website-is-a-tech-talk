@@ -26,11 +26,7 @@ module.exports = function(eleventyConfig) {
 			return 0;
 		});
 	});
-	
-	eleventyConfig.addShortcode("level", function(level) {
-		return `Web Site Build Level ${level} of 10 Complete 🏆`;
-	});
-	
+
 	eleventyConfig.addFilter("previewHtml", function(content) {
 		return content.split("~/twitter/@").join("https://unavatar.now.sh/twitter/");
 	});
