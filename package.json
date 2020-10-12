@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@11ty/eleventy": "0.11.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "file:../eleventy-plugin-syntaxhighlight",
+    "@11ty/eleventy-plugin-syntaxhighlight": "3.0.3",
     "gray-matter": "^4.0.2",
     "liquidjs": "^9.15.1",
     "performance-leaderboard": "^3.1.6",
