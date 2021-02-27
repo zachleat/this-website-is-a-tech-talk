@@ -1,5 +1,8 @@
 # This web site is a tech talk
 
+* [Watch @zachleat give this talk](https://www.zachleat.com/web/this-website-is-a-tech-talk/)
+* [Go through the slides yourself!](https://www.zachleat.com/techtalk)
+
 ## Keyboard commands
 
 * `Any key` Reveal another character of code or text
