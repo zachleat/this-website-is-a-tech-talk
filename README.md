@@ -5,7 +5,8 @@
 
 ## Keyboard commands
 
-* `Any key` Reveal another character of code or text
+* `Any key` Reveal another character
+* `Delete` (or `Backspace` on Windows) to hide a character
 * `⌘←` Previous slide
 * `⌘→` or `Enter` Next slide
 * `⌘↑` Back to index
