@@ -1,9 +1,19 @@
 :root {
 	--slide-border-width: 3px;
 }
+.slide-list-title {
+	margin: 1em 5em;
+}
 .slide-list {
-	padding: 1em 1em 1em 4em;
+	padding: 0 1em 1em 4em;
 	font-size: 2em;
+}
+.slide-list-instructions {
+	font-size: .75em;
+}
+.slide-list-instructions p,
+.slide-list-instructions ul {
+	margin: 0 0 1em;
 }
 .slide-list a {
 	text-decoration: none;

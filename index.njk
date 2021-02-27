@@ -2,7 +2,20 @@
 layout: base.njk
 ---
 <div class="slide theme-prism-material-oceanic">
+	<h1 class="slide-list-title">This Web Site is a Tech Talk</h1>
+
 	<ol class="slide-list">
+		<li class="slide-list-instructions">
+			<p>If you’re watching the talk you should not see this page. The talk begins on the next slide: Decoy.</p>
+			<p>Keyboard commands:</p>
+			<ul>
+				<li><code>Any key</code> Reveal another character of code or text</li>
+				<li><code>⌘←</code> Previous slide</li>
+				<li><code>⌘→</code> or <code>Enter</code> Next slide</li>
+				<li><code>⌘↑</code> Back to index</li>
+				<li><code>`</code> Skip animation</li>
+			</ul>
+		</li>
 		{%- for slide in collections.slide %}
 		<li>
 			<a href="{{ slide.url }}">

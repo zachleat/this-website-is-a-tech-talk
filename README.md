@@ -1,39 +1,32 @@
 # This web site is a tech talk
 
+## Keyboard commands
+
+* `Any key` Reveal another character of code or text
+* `⌘←` Previous slide
+* `⌘→` or `Enter` Next slide
+* `⌘↑` Back to index
+* `\`` Skip animation
+
 ## Features
 
-* `~` Use tilde to show all text on page without progressive play or animation.
-* Scrolls with the text if it goes longer than a page
+* “Fake” live coding (a la https://hackertyper.com/)
+	* Supports adding to boilerplate pre-populated code sample.
+	* Multiple cursor entry points on the same slide, jumps between them automatically.
+	* Multiple cursors!
+	* Supports “fake” deleting characters
+* Live preview of output in “Fake” browser
+	* Multiple alignment modes (side-by-side, top/bottom)
+	* Supports client-rendered Liquid syntax
+* “Fake” browser can show:
+	* Real web sites (via `<iframe>`)
+	* “Fake” web sites (via image screenshots—more offline friendly)
+* Show “Fake” terminal with “Fake” terminal output (progressively revealed).
+	* Scrolls with the text if it goes longer than a page
+* Benchmark and show Lighthouse scores for slide output (uses `<speedlify-score>`)
 
 ## Checklist before giving the talk
 
-* [ ] Turn off development mode
+* [ ] Don’t use development mode (use `npm start` not `npm run dev`)
 * [ ] Turn off notifications (disable anything that will reveal browser)
-* [x] Turn off scrollbars
-
-## TODO content
-
-
-
-## TODO features
-
-* Pause delay at specified indeces (or at end of typing config entries) (e.g. on /slides/7/ and especially on /slides/8/)
-* Add markdown support
-* scroll to offset on external iframe slide 9.3
-	* scroll to offset per timer (filmstrip scrolls 1s of frames in 1s of time)
-* CSS `zoom: 2` would allow custom zooms per slide
-	* Automatic pause delay for non alphanumeric characters
-* Cache images locally
-
-### Bugs
-
-* Multiple cursors and Show all (tilde) function
-* Multiple cursors and ␡ character
-* Autoplay and ␡ character (try with tilde)
-
-### v2
-
-* Type a word at a time
-* Show a line at a time
-* Optional: enter to autoplay to index (but also make it not possible to delete that code)
-* Dom diffing for iframe srcdoc? DiffHTML morphdom, diff-dom, nanomorph
+* [ ] Turn off scrollbars in Mac OS

@@ -5,7 +5,7 @@
   "main": ".eleventy.js",
   "scripts": {
     "dev": "ELEVENTY_DEV=true npx @11ty/eleventy --serve --quiet",
-    "start": "npx @11ty/eleventy --serve --quiet"
+    "start": "npx @11ty/eleventy --quiet && http-server _site"
   },
   "keywords": [],
   "author": "",
