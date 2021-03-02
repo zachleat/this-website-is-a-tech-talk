@@ -2,11 +2,19 @@
 	--slide-border-width: 3px;
 }
 .slide-list-title {
-	margin: 1em 5em;
+	margin: 1em;
 }
 .slide-list {
-	padding: 0 1em 1em 4em;
-	font-size: 2em;
+	padding: 0 1em 1em 3em;
+}
+@media (min-width: 48em) { /* 768px */
+	.slide-list-title {
+		margin-left: 4.75em;
+	}
+	.slide-list {
+		font-size: 2em;
+		padding-left: 4em;
+	}
 }
 .slide-list-instructions {
 	font-size: .75em;
@@ -18,7 +26,8 @@
 .slide-list a {
 	text-decoration: none;
 }
-.slide-list a span {
+.slide-list a span,
+.slide-list-instructions a {
 	text-decoration: underline;
 }
 .slide-list > li {

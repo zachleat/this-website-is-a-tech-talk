@@ -1,7 +1,7 @@
 # This web site is a tech talk
 
 * [Watch @zachleat give this talk](https://www.zachleat.com/web/this-website-is-a-tech-talk/)
-* [Go through the slides yourself!](https://www.zachleat.com/techtalk)
+* [Go through the slides yourself!](https://techtalk.zachleat.dev/) (Fair warning these are not touchscreen friendly)
 
 ## Keyboard commands
 
