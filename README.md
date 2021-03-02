@@ -23,6 +23,8 @@ npm start
 
 All of the slide content is stored in `slides/`. Clear this folder out to create your own presentation!
 
+All of the front matter options for slides are documented in `_includes/slide.njk`.
+
 ## Features
 
 * “Fake” live coding (a la https://hackertyper.com/)
