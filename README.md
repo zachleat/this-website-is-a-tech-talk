@@ -14,6 +14,8 @@
 
 ## Run locally
 
+This uses [Eleventy](https://www.11ty.dev/).
+
 ```
 npm install
 npm start
