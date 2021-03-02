@@ -12,6 +12,15 @@
 * `⌘↑` Back to index
 * \` Skip animation
 
+## Run locally
+
+```
+npm install
+npm start
+```
+
+All of the slide content is stored in `slides/`. Clear this folder out to create your own presentation!
+
 ## Features
 
 * “Fake” live coding (a la https://hackertyper.com/)
