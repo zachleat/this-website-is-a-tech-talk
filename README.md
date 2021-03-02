@@ -10,7 +10,7 @@
 * `⌘←` Previous slide
 * `⌘→` or `Enter` Next slide
 * `⌘↑` Back to index
-* `\`` Skip animation
+* \` Skip animation
 
 ## Features
 
