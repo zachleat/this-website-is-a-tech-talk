@@ -35,13 +35,13 @@ module.exports = function(eleventyConfig) {
 		let wrap = new SyntaxHighlightCharacterWrap();
 		wrap.setTypingConfigArray(typingConfig);
 		wrap.setMultipleCursors(multipleCursors);
-		wrap.addContentTransform((content) => {
-			// don’t waste time doing huge templates in dev mode
-			if(process.env.ELEVENTY_DEV && content.length > 8000) {
-				console.warn( "⚠️⚠️⚠️ Warning: Large template skipped in development mode!" );
-				return false;
-			}
-		});
+		// wrap.addContentTransform((content) => {
+		// 	// don’t waste time doing huge templates in dev mode
+		// 	if(process.env.ELEVENTY_DEV && content.length > 8000) {
+		// 		console.warn( "⚠️⚠️⚠️ Warning: Large template skipped in development mode!" );
+		// 		return false;
+		// 	}
+		// });
 
 		return wrap.wrapContent(content, codeFormat);
 	});
